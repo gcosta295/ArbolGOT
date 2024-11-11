@@ -9,8 +9,11 @@ package com.mycompany.arbolgot;
  * @author gabri
  */
 public class ArbolGOT {
-
+    
+    
     public static void main(String[] args) {
-        System.out.println("test!");
+        ReadJSON M = new ReadJSON();
+        M.abrirArchivo();
+        M.Parse();
     }
 }
