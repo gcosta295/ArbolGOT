@@ -13,6 +13,7 @@ public class Person {
     private String number;
     private String father;
     private Person pFather;
+    private Person pMother;
     private String eyesColor;
     private String hairColor;
     private String mother;
@@ -45,6 +46,7 @@ public class Person {
         this.next = null;
         this.pFather = null;
         this.index = 0;
+        this.pMother=null;
     }
     
 /**
@@ -87,7 +89,10 @@ public class Person {
     public Person getNext() {
         return next;
     } 
-
+    
+    public void setPMother(Person person){
+        this.pMother=person;
+    }
 
     /**
      * @param name the name to set
