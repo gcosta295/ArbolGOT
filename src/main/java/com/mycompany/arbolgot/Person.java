@@ -143,10 +143,12 @@ public class Person {
 */         
     public List getAnsesters (int n, List l){
         if (n >= 0){
-        l.addPerson(this);
-        Person pAux = this.pFather;
-        n -= 1;
-        pAux.getAnsesters(n, l);
+            l.addPerson(this);
+            if (this.pFather != null){
+                Person pAux = this.pFather;
+                n -= 1;
+                pAux.getAnsesters(n, l);
+            }
         }
         return l;
     }
