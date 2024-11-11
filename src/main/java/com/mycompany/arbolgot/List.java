@@ -87,7 +87,25 @@ public class List {
         }
         return false;
     }
-
+                                            
+/**
+ * Se emplea para confirmar la existencia de una 
+ * persona mediante su indice 
+ * @author astv06
+ * @param pIndex
+ * @return boolean
+*/                                                                                    
+    public boolean indexInList(int pIndex) {
+        Person sAux = pFirst;
+        while (sAux != null) {
+            if (sAux.getIndex() == pIndex) {
+                return true;
+            }
+            sAux = sAux.getNext();
+        }
+        return false;
+    }
+    
 /**
  * Busca en la lista que invoca al metodo la 
  * persona correspondiente al indice del
@@ -143,6 +161,23 @@ public class List {
         Person pAux = pFirst;                 
         while (pAux != null) {                 
             if (pAux.getName().contains(pName)) { 
+                return pAux;
+            }
+            pAux = pAux.getNext();             
+        }
+        return null;
+    }
+    
+/**
+ * en base al apodo de la persona te encuentra la persona
+ * @author astv06
+ * @param pMotin
+ * @return sAux
+*/    
+    public Person getMotinPerson(String pMotin) { 
+        Person pAux = pFirst;                 
+        while (pAux != null) {                 
+            if (pAux.getMotin().contains(pMotin)) { 
                 return pAux;
             }
             pAux = pAux.getNext();             
