@@ -152,6 +152,7 @@ public class ReadJSON {
                         }
                     }
                     persons.addPerson(newPerson);
+//                    System.out.println(newPerson.getName());
                 }
             }
 
@@ -162,6 +163,42 @@ public class ReadJSON {
 
         return persons;
 
+    }
+
+    public List Arbol(List persons) {
+//        persons.getPerson(persons.getlen());
+        for (int i = 1; i < persons.getlen(); i++) {
+            Person pAux = persons.getPerson(i);
+//            System.out.println(pAux.getName());
+
+            String fatherName = pAux.getFather();
+            if (!"[Unknown]".equals(fatherName)) { //Todo lo de los padres
+//            System.out.println(pAux.getName());
+
+                if (persons.getMotinPerson(fatherName) != null) { //si el nombre es por motin
+
+                    Person padre = persons.getMotinPerson(fatherName);
+                    pAux.setPFather(padre);
+//                    System.out.println(pAux.getName() + " father: " + pAux.getPFather().getName());
+
+                    padre.getHijos().addPerson(pAux);
+                } else { //si tengo que buscarlo por nombre y numero
+
+                    for (int j = 1; j < persons.getlen(); j++) {
+                        Person pAux2 = persons.getPerson(j);
+                        String pname = pAux2.getName();
+                        String pnumber = pAux2.getNumber();
+                        String completeText = pname + ", " + pnumber + " of his name";
+                        if (completeText == fatherName) {
+                            pAux.setPFather(pAux2);
+                            pAux2.getHijos().addPerson(pAux);
+//                            System.out.println(pAux.getName() + " father: " + pAux.getPFather().getName());
+                        }
+                    }
+                }
+            }
+        }
+        return persons;
     }
 
     /**

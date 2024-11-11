@@ -158,9 +158,12 @@ public class List {
 */    
     public Person getMotinPerson(String pMotin) { 
         Person pAux = pFirst;                 
-        while (pAux != null) {                 
-            if (pAux.getMotin().contains(pMotin)) { 
+        while (pAux != null) { 
+            if (pAux.getMotin()!=null){
+                if (pAux.getMotin().contains(pMotin)) { 
                 return pAux;
+            }
+            
             }
             pAux = pAux.getNext();             
         }

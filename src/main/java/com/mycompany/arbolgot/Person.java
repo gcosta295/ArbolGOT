@@ -9,7 +9,7 @@ package com.mycompany.arbolgot;
  * @author astv06
  */
 public class Person {
-   private String name;
+    private String name;
     private String number;
     private String father;
     private Person pFather;
@@ -39,7 +39,7 @@ public class Person {
         this.motin = null;
         this.titulo = null;
         this.esposo = null;
-        this.hijos = null;
+        this.hijos = new List();
         this.notes = null;
         this.fate = null;
         this.next = null;
@@ -183,6 +183,25 @@ public class Person {
     
     public String getMotin() {
         return motin;
+    }
+    
+    public String getFather(){
+        return father;
+    }
+    
+    public String getNumber(){
+        return number;
+    }
+    
+    public List getHijos(){
+        return hijos;
+    }
+    public void setPFather(Person person){
+        this.pFather=person;
+    }
+    
+    public Person getPFather(){
+        return pFather;
     }
     
     public List getGeneration (int n, List l){

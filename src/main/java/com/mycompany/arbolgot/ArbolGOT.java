@@ -14,6 +14,10 @@ public class ArbolGOT {
     public static void main(String[] args) {
         ReadJSON M = new ReadJSON();
         M.abrirArchivo();
-        M.Parse();
+        
+        List persons=M.Parse();
+        M.Arbol(persons);
+        
+
     }
 }
