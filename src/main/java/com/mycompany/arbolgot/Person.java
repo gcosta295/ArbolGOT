@@ -108,6 +108,24 @@ public class Person {
     }
 
 /**
+ * retorna el indice de la persona 
+ * @author astv06
+ * @return index
+*/
+    public int getIndex() {
+        return index;
+    }
+
+/**
+ * retorna la lista de hijos de la persona 
+ * @author astv06
+ * @return hijos
+*/    
+    public List getHijos() {
+        return hijos;
+    }
+
+/**
  * retorna los integrantes de una generacion
  * @author astv06
  * @param n
