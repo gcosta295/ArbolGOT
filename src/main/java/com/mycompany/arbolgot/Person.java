@@ -80,18 +80,40 @@ public class Person {
         this.next = next;
     }
 
+/**
+ * retorna el nombre de la persona 
+ * @author astv06
+ * @return name
+*/ 
     public String getName() {
         return name;
     }
 
+/**
+ * retorna la siguiente persona de la lista 
+ * @author astv06
+ * @return next
+*/ 
     public Person getNext() {
         return next;
     } 
 
+/**
+ * retorna el apodo de la persona 
+ * @author astv06
+ * @return motin
+*/ 
     public String getMotin() {
         return motin;
     }
-    
+
+/**
+ * retorna los integrantes de una generacion
+ * @author astv06
+ * @param n
+ * @param l
+ * @return l
+*/     
     public List getGeneration (int n, List l){
         n -=1;
         if (n > 1){
@@ -107,7 +129,24 @@ public class Person {
                 Person pAux = this.hijos.getPerson(i);
                 l.addPerson(pAux);
             }
-            return l;
+        }
+        return l;
+    }
+
+/**
+ * retorna los antecesores masculinos de 
+ * la rama familiar
+ * @author astv06
+ * @param n
+ * @param l
+ * @return l
+*/         
+    public List getAnsesters (int n, List l){
+        if (n >= 0){
+        l.addPerson(this);
+        Person pAux = this.pFather;
+        n -= 1;
+        pAux.getAnsesters(n, l);
         }
         return l;
     }
