@@ -12,6 +12,7 @@ public class Person {
    private String name;
     private String number;
     private String father;
+    private Person pFather;
     private String eyesColor;
     private String hairColor;
     private String mother;
@@ -42,6 +43,7 @@ public class Person {
         this.notes = null;
         this.fate = null;
         this.next = null;
+        this.pFather = null;
         this.index = 0;
     }
     
@@ -66,6 +68,7 @@ public class Person {
         this.setFate(p.fate);
         this.setNext(p.next);
         this.setIndex(p.index);
+        this.pFather = p.pFather;
     }
 
 /**
@@ -84,6 +87,7 @@ public class Person {
     public Person getNext() {
         return next;
     } 
+
 
     /**
      * @param name the name to set
@@ -177,4 +181,28 @@ public class Person {
     }
     
     
+    public String getMotin() {
+        return motin;
+    }
+    
+    public List getGeneration (int n, List l){
+        n -=1;
+        if (n > 1){
+            for (int i = 1; i <= this.hijos.getlen(); i++) {
+                Person pAux = this.hijos.getPerson(i);
+                if (pAux.hijos != null){
+                    pAux.getGeneration(n, l);
+                }
+            }
+        }
+        if (n == 0){
+            for (int i = 1; i <= this.hijos.getlen(); i++) {
+                Person pAux = this.hijos.getPerson(i);
+                l.addPerson(pAux);
+            }
+            return l;
+        }
+        return l;
+    }
+
 }

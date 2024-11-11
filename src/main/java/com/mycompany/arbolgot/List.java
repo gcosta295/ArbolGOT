@@ -149,6 +149,23 @@ public class List {
         }
         return null;
     }
+    
+/**
+ * en base al apodo de la persona te encuentra la persona
+ * @author astv06
+ * @param pMotin
+ * @return sAux
+*/    
+    public Person getMotinPerson(String pMotin) { 
+        Person pAux = pFirst;                 
+        while (pAux != null) {                 
+            if (pAux.getMotin().contains(pMotin)) { 
+                return pAux;
+            }
+            pAux = pAux.getNext();             
+        }
+        return null;
+    }
 
 /**
  * elimina una persona en la lista 
