@@ -25,6 +25,7 @@ public class Person {
     private String fate;
     private Person next;
     private int index;
+    private String listHijos;
 
 /**
  * constructor de la persona 
@@ -47,6 +48,7 @@ public class Person {
         this.pFather = null;
         this.index = 0;
         this.pMother=null;
+        this.listHijos=null;
     }
     
 /**
@@ -71,6 +73,8 @@ public class Person {
         this.setNext(p.next);
         this.setIndex(p.index);
         this.pFather = p.pFather;
+        this.setPMother(p.pMother);
+        this.listHijos= p.listHijos;
     }
 
 /**
@@ -82,6 +86,13 @@ public class Person {
         this.next = next;
     }
 
+    public void setPMother(Person pMother){
+        this.pMother=pMother;
+    }
+    public void setPFather(Person pFather){
+        this.pFather=pFather;
+    }
+    
 /**
  * retorna el nombre de la persona 
  * @author astv06
@@ -100,10 +111,11 @@ public class Person {
         return next;
     } 
     
-    public void setPMother(Person person){
-        this.pMother=person;
-    }
+ 
 
+    public String getMother(){
+        return mother;
+    }
 
     /**
      * @param name the name to set
@@ -207,10 +219,13 @@ public class Person {
         return number;
     }
     
-    public void setPFather(Person person){
-        this.pFather=person;
+    public void setListaHijos(String s){
+        this.listHijos=s;
     }
     
+    public String getListaHijos(){
+        return listHijos;
+    }
     public Person getPFather(){
         return pFather;
     }
