@@ -85,6 +85,13 @@ public class Arbol {
                 Node nx;
                 nx = this.graph.addNode(pAux.getName());
             }
+            if (pAux.getMother()!=null){
+                if (lNodes.indexInList(lNodes.getNamedPerson(pAux.getMother()).getIndex())==false){
+                    lNodes.addPerson(lNodes.getNamedPerson(pAux.getMother()));
+                    Node nx2;
+                    nx2 = this.graph.addNode(pAux.getMother());
+                }
+            }
             if (pAux.getHijos()!=null){
                 for (int j = 1; j <= persons.getlen(); j++) {
                     Person hAux = pAux.getHijos().getPerson(j);
