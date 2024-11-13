@@ -72,7 +72,7 @@ public class Arbol {
     public void Graph(List persons) {
 //        this.listaLines = new List();
 //        this.lSucursals = new List();
-        this.lPerson = new List();
+//        this.lPerson = new List();
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 5px, 5px;\n"
                 + "    fill-color: #2de327;\n"
