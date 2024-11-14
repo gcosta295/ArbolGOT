@@ -4,6 +4,13 @@
  */
 package com.mycompany.arbolgot;
 
+
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Nathaly
@@ -11,15 +18,20 @@ package com.mycompany.arbolgot;
 public class VPrincipal extends javax.swing.JFrame {
 
     ReadJSON M;
+//    FondoPanel fondo = new FondoPanel();
     
     /**
      * Creates new form VPrincipal
      */
     public VPrincipal() {
+        
         this.M = new ReadJSON();
-        initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
+        initComponents();
+              
+//        this.setContentPane(fondo);
         
     }
     
@@ -55,7 +67,7 @@ public class VPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
+                .addContainerGap(355, Short.MAX_VALUE)
                 .addComponent(B_JSON, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -64,7 +76,7 @@ public class VPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addComponent(B_JSON, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
@@ -91,8 +103,9 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         }
         this.setVisible(false);
-            V2 interfaz2 = new V2();
-            interfaz2.show();
+        V2 interfaz2 = new V2();
+        interfaz2.show();
+        JOptionPane.showMessageDialog(this, "Se ha cargado el JSON");
     }//GEN-LAST:event_B_JSONActionPerformed
 
     /**
@@ -135,4 +148,20 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton B_JSON;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+//    class FondoPanel extends JPanel{
+//        
+//        private Image imagen;
+//        
+//        @Override
+//        public void paint(Graphics g){
+//            imagen = new ImageIcon(getClass().getResource("/com.mycompany.arbolgot.imagenes/mapagot.png")).getImage();
+//            
+//            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+//            
+//            setOpaque(false);
+//            
+//            super.paint(g);
+//        }
+//    }
 }
