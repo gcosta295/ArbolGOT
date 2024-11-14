@@ -18,8 +18,11 @@ public class VPrincipal extends javax.swing.JFrame {
     public VPrincipal() {
         this.M = new ReadJSON();
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +90,9 @@ public class VPrincipal extends javax.swing.JFrame {
                 }
             }
         }
+        this.setVisible(false);
+            V2 interfaz2 = new V2();
+            interfaz2.show();
     }//GEN-LAST:event_B_JSONActionPerformed
 
     /**
@@ -120,6 +126,7 @@ public class VPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VPrincipal().setVisible(true);
+                
             }
         });
     }
