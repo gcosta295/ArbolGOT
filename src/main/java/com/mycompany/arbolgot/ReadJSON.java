@@ -58,8 +58,7 @@ public class ReadJSON {
             file.showOpenDialog(file);
             File abre = file.getSelectedFile();
             String fileType = file.getTypeDescription(abre); //tells us what type of file the chosen one is 
-
-            if (fileType.equals("JSON Source File")) { //Validates the JSON file
+            if (fileType.equals("JSON Source File") || fileType.equals("Generic File")) { //Validates the JSON file
                 if (abre != null) {
                     valid = true;
                     FileReader archivos = new FileReader(abre);
@@ -174,7 +173,7 @@ public class ReadJSON {
     }
 
     public List Arbol(List persons) {
-        
+
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
 //            System.out.println(pAux.getName());
@@ -225,6 +224,7 @@ public class ReadJSON {
                     pAux.setPMother(newMother);
 //                    System.out.println(motherName);
                     persons.addPerson(newMother);
+                    persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                 }
 
             }
@@ -251,21 +251,22 @@ public class ReadJSON {
                         if (persons.nameInList(hijoName) == false) {
                             Person newHijo = new Person();
                             newHijo.setName(hijoName);
-                            pAux.getHijos().addPerson(newHijo);
                             newHijo.setPFather(pAux);
                             newHijo.setFather(pAux.getName());
                             persons.addPerson(newHijo);
                             persons.getPerson(persons.getlen()).setIndex(persons.getlen());
+                            pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
                         } else {
-
                             if (pAux.getHijos().getNamedPerson(hijoName) == null) {
                                 Person newHijo = new Person();
                                 newHijo.setName(hijoName);
-                                pAux.getHijos().addPerson(newHijo);
+//                                pAux.getHijos().addPerson(newHijo);
                                 newHijo.setPFather(pAux);
                                 newHijo.setFather(pAux.getName());
                                 persons.addPerson(newHijo);
                                 persons.getPerson(persons.getlen()).setIndex(persons.getlen());
+                                pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
+
                             }
                         }
 

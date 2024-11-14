@@ -10,10 +10,12 @@ package com.mycompany.arbolgot;
  */
 public class HashTable {
     private Hash first;
+    private Hash last;
     private int len;
 
     public HashTable() {
         this.first = null;
+        this.last = null;
         this.len = 0;
     }
 
@@ -21,43 +23,26 @@ public class HashTable {
         this.first = null;
     }
 
+    public void setLast(Hash last) {
+        this.last = last;
+    }
+
     public void addHash (Hash h){
         if (this.len == 0){
             this.first = h;
+            this.last = h;
         }
         else{
-            Hash hAux = this.first;
-            while (hAux != null){
-                if (h.getKey()-1==hAux.getKey()){
-                    hAux.setNext(h);
-                    this.len+=1;
-                }
-            }
+            Hash hAux = this.last;
+            hAux.setNext(h);
+            this.last = h;
         }
+        this.len+=1;
     }
-//    public void addHashTable (Object o, int index){
-//        this.setKey(index);
-//        this.setData(o);
-//        this.setFirst(first);
-//        if (index == 1){
-//            this.setFirst(this);
-//        }
-//        else{
-//            HashTable hAux = this.first;
-//            while (hAux.key + 1 <= index){
-//                if (hAux.key + 1 < index){
-//                    hAux = hAux.next;
-//                }
-//                else{
-//                    hAux.next.next = this;
-//                }
-//            }
-//        }
-//    }
-//    
+    
     public Hash serchHashTable (int index){
         Hash hAux = this.first;
-        while (hAux != null){
+        while (hAux.getNext() != null){
             if (hAux.getKey()==index){
                 return hAux;
             }
@@ -67,16 +52,4 @@ public class HashTable {
         }
         return null;
     }
-//    public HashTable serchHashTable (int index){
-//        HashTable hAux = this.first;
-//        while (hAux.key + 1 <= index){
-//            if (hAux.key + 1 < index){
-//                    hAux = hAux.next;
-//                }
-//                else{
-//                    return hAux;
-//            }
-//        } 
-//        return null;
-//    }
 }

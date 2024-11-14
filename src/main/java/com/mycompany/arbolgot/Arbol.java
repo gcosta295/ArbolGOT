@@ -78,27 +78,32 @@ public class Arbol {
                 + "    fill-color: #2de327;\n"
                 + "    text-mode: normal; \n"
                 + "}");
+        HashTable HT = new HashTable();
+        lNodes = new List();
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
             if (lNodes.indexInList(pAux.getIndex())==false){
                 lNodes.addPerson(pAux);
                 Node nx;
                 nx = this.graph.addNode(pAux.getName());
+                this.createHash(HT, nx, pAux.getIndex());
             }
             if (pAux.getMother()!=null){
                 if (lNodes.indexInList(lNodes.getNamedPerson(pAux.getMother()).getIndex())==false){
                     lNodes.addPerson(lNodes.getNamedPerson(pAux.getMother()));
                     Node nx2;
                     nx2 = this.graph.addNode(pAux.getMother());
+                    this.createHash(HT, nx2, pAux.getIndex());
                 }
             }
             if (pAux.getHijos()!=null){
-                for (int j = 1; j <= persons.getlen(); j++) {
+                for (int j = 1; j <= pAux.getHijos().getlen(); j++) {
                     Person hAux = pAux.getHijos().getPerson(j);
                     if (lNodes.indexInList(hAux.getIndex())==false){
                         lNodes.addPerson(hAux);
                         Node nx1;
                         nx1 = this.graph.addNode(hAux.getName());
+                        this.createHash(HT, nx1, pAux.getIndex());
                         String y = pAux.getName() + hAux.getName();
                         Edge edd = this.graph.addEdge(y, pAux.getName(), hAux.getName());
                         
@@ -108,6 +113,8 @@ public class Arbol {
                     }
                 }
             }
+            
+    
 //        for (int j = 1; j <= persons.getlen(); j++) {
 //            Line tline = persons.getLine(persons, j);
 //            List stations = persons.getLine(persons, j).getStations();
@@ -163,6 +170,13 @@ public class Arbol {
 //                System.out.println(stations.getStation(l).getsData());
 //            }
         }
+    }
+    
+    public void createHash (HashTable ht, Object o, int index){
+        Hash hAux = new Hash();
+        hAux.setData(o);
+        hAux.setKey(index);
+        ht.addHash(hAux);
     }
 
 //    /**
