@@ -195,7 +195,7 @@ public class ReadJSON {
                         padre.getHijos().addPerson(pAux);
                     } else { //si tengo que buscarlo por nombre y numero
 
-                        for (int j = 1; j < persons.getlen(); j++) {
+                        for (int j = 1; j <= persons.getlen(); j++) {
                             Person pAux2 = persons.getPerson(j);
                             String pname = pAux2.getName();
                             String pnumber = pAux2.getNumber();
@@ -221,10 +221,7 @@ public class ReadJSON {
                     Person newMother = new Person();
                     newMother.setName(motherName);
                     newMother.getHijos().addPerson(pAux);
-                   
-//                    System.out.println(motherName);
                     persons.addPerson(newMother);
-                    persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                     pAux.setPMother(persons.getPerson(persons.getlen()));
                 }
 
@@ -241,14 +238,12 @@ public class ReadJSON {
             Person pAux = persons.getPerson(j);
             if (pAux.getListaHijos() != null) {
                 String hijos = pAux.getListaHijos();
-
                 try {
                     JSONParser parser = new JSONParser();
-
                     JSONArray json = (JSONArray) parser.parse(hijos);
                     for (Object hijo : json) {
                         String hijoName = (String) hijo;
-//                        System.out.println(hijoName);
+   //                     System.out.println(hijoName);
                         if (persons.nameInList(hijoName) == false) {
                             Person newHijo = new Person();
                             newHijo.setName(hijoName);
@@ -258,17 +253,32 @@ public class ReadJSON {
                             persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                             pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
                         } else {
-                            if (pAux.getHijos().getNamedPerson(hijoName) == null) {
-                                Person newHijo = new Person();
-                                newHijo.setName(hijoName);
-//                                pAux.getHijos().addPerson(newHijo);
-                                newHijo.setPFather(pAux);
-                                newHijo.setFather(pAux.getName());
-                                persons.addPerson(newHijo);
-                                persons.getPerson(persons.getlen()).setIndex(persons.getlen());
-                                pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
-
+                            Person pAux1 = persons.getNamedPerson(hijoName);
+//                            if (pAux1.getFather() == pAux.getName() && pAux.getHijos().getNamedPerson(hijoName) == null){
+//                                pAux.getHijos().addPerson(pAux1);
+//                                System.out.println("hijo mismo padre "+pAux1);
+//                            }else{
+                                if(pAux1.getFather() != pAux.getName()){
+                                    Person newHijo = new Person();
+                                    newHijo.setName(hijoName);
+                                    newHijo.setPFather(pAux);
+                                    newHijo.setFather(pAux.getName());
+//                                    pAux.getHijos().addPerson(newHijo);
+                                    persons.addPerson(newHijo);
+//                                    System.out.println("hijo diferente padre "+newHijo.getName());
+//                                }
                             }
+                            
+//                            if (pAux.getHijos().getNamedPerson(hijoName) == null) {
+//                                Person newHijo = new Person();
+//                                newHijo.setName(hijoName);
+////                                pAux.getHijos().addPerson(newHijo);
+//                                newHijo.setPFather(pAux);
+//                                newHijo.setFather(pAux.getName());
+//                                persons.addPerson(newHijo);
+//                                pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
+//
+//                            }
                         }
 
                     }

@@ -15,6 +15,12 @@ public class ArbolGOT {
         List persons = M.Parse();
         persons = M.Arbol(persons);
         M.arreglarHijos(persons);
+//        for (int i = 1; i < persons.getlen(); i++) {
+//            persons.getPerson(i).setIndex(i);
+//            System.out.println(persons.getPerson(i).getName());
+//            System.out.println(persons.getPerson(i).getIndex());
+
+//        }
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
         Clicks clicks = new Clicks();

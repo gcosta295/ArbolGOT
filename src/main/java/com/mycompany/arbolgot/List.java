@@ -107,16 +107,14 @@ public class List {
      * @return boolean
      */
     public boolean indexInList(int pIndex) {
-        Person sAux = pFirst;
-        while (sAux != null) {
-            if (sAux.getIndex() == pIndex) {
-                System.out.println(sAux.getName());
-                System.out.println(sAux.getIndex() +"  "+  pIndex);
-                return true;
+        boolean b = false;
+        for (int i = 1; i <= this.len; i++) {
+            Person pAux = this.getPerson(i);
+            if (pAux.getIndex() == pIndex) {
+                b = true;
             }
-            sAux = sAux.getNext();
         }
-        return false;
+        return b;
     }
 
     /**
@@ -197,7 +195,6 @@ public class List {
                 if (pAux.getMotin().contains(pMotin)) {
                     return pAux;
                 }
-
             }
             pAux = pAux.getNext();
         }
