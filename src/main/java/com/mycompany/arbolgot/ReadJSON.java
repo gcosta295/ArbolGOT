@@ -181,6 +181,7 @@ public class ReadJSON {
             }
 
             if (persons.nameInList(motherName)) {
+                
                 Person pAux3 = persons.getNamedPerson(motherName);
                 pAux.setPMother(pAux3);
                 pAux3.getHijos().addPerson(pAux);
@@ -190,6 +191,7 @@ public class ReadJSON {
                     newMother.setName(motherName);
                     newMother.getHijos().addPerson(pAux);
                     persons.addPerson(newMother);
+                    persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                     pAux.setPMother(persons.getPerson(persons.getlen()));
                 }
 
@@ -220,14 +222,18 @@ public class ReadJSON {
                             persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                             pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
                         } else {
-                            Person pAux1 = persons.getNamedPerson(hijoName);
-                                if(pAux1.getFather() != pAux.getName()){
+                            if (pAux.getHijos().nameInList(hijoName) == false) {
+                                Person pAux1 = persons.getNamedPerson(hijoName);
+                                if (pAux1.getFather() != pAux.getName()) {
                                     Person newHijo = new Person();
                                     newHijo.setName(hijoName);
                                     newHijo.setPFather(pAux);
                                     newHijo.setFather(pAux.getName());
                                     persons.addPerson(newHijo);
-                                    pAux.getHijos().addPerson(newHijo);
+                                    persons.getPerson(persons.getlen()).setIndex(persons.getlen());
+                                    pAux.getHijos().addPerson(persons.getPerson(persons.getlen()));
+                                }
+
                             }
                         }
 
