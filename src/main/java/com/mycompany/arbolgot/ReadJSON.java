@@ -221,10 +221,11 @@ public class ReadJSON {
                     Person newMother = new Person();
                     newMother.setName(motherName);
                     newMother.getHijos().addPerson(pAux);
-                    pAux.setPMother(newMother);
+                   
 //                    System.out.println(motherName);
                     persons.addPerson(newMother);
                     persons.getPerson(persons.getlen()).setIndex(persons.getlen());
+                    pAux.setPMother(persons.getPerson(persons.getlen()));
                 }
 
             }

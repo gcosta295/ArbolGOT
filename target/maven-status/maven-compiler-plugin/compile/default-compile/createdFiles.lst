@@ -1,3 +1,4 @@
-com/mycompany/arbolgot/HashTable.class
-com/mycompany/arbolgot/Arbol.class
-com/mycompany/arbolgot/Hash.class
+com\mycompany\arbolgot\Hash.class
+com\mycompany\arbolgot\Arbol.class
+com\mycompany\arbolgot\Clicks.class
+com\mycompany\arbolgot\HashTable.class

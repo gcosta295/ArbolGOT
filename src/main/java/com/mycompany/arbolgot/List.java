@@ -110,6 +110,8 @@ public class List {
         Person sAux = pFirst;
         while (sAux != null) {
             if (sAux.getIndex() == pIndex) {
+                System.out.println(sAux.getName());
+                System.out.println(sAux.getIndex() +"  "+  pIndex);
                 return true;
             }
             sAux = sAux.getNext();

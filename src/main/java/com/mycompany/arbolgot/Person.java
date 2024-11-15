@@ -31,6 +31,11 @@ public class Person {
  * constructor de la persona 
  * @author astv06
 */ 
+    
+    public Person getpMother() {
+        return pMother;
+    }
+
     public Person() {
         this.name = null;
         this.number = null;
