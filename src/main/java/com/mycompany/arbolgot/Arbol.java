@@ -15,8 +15,6 @@ import org.graphstream.graph.implementations.MultiGraph;
 public class Arbol {
 
     public MultiGraph graph;
-    private List lSucursals;
-    private List listaLines;
     private List lPerson;
     private List lNodes;
 
@@ -31,17 +29,6 @@ public class Arbol {
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List ();
     }
-//
-//    /**
-//     * Regresa la lista de estaciones que conforman al grafo
-//     *
-//     * @author Nathaly
-//     * @return lPerson
-//     */
-//    public List getlPerson() {
-//        return lPerson;
-//    }
-//
 
     /**
      * devuelve el grafo
@@ -52,17 +39,6 @@ public class Arbol {
     public MultiGraph getGraph() {
         return graph;
     }
-//
-//    /**
-//     * Regresa la lista de sucursales
-//     *
-//     * @author gcosta
-//     * @return lSucursals
-//     */
-//    public List getlSucursals() {
-//        return lSucursals;
-//    }
-//
 
     /**
      * método para la creación del grafo. Se vuelve cada persona un nodo con
@@ -73,9 +49,6 @@ public class Arbol {
      * @param persons
      */
     public void Graph(List persons) {
-//        this.listaLines = new List();
-//        this.lSucursals = new List();
-//        this.lPerson = new List();
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 10px, 10px;\n"
                 + "    fill-color: black;\n"
@@ -84,22 +57,14 @@ public class Arbol {
         HashTable HT = new HashTable();
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
-//            System.out.println("persona     " + pAux.getName());
-//            System.out.println("len list persons    "+lNodes.getlen());
-//            System.out.println("index persona   "+ pAux.getIndex());
-//            System.out.println("");
             if (lNodes.indexInList(pAux.getIndex()) == false) {
                 lNodes.addPerson(pAux);
                 Node nx;
-//                System.out.println(pAux);
                 nx = graph.addNode(Integer.toString(pAux.getIndex()));
                 nx.setAttribute("ui.label", pAux.getName());
                 this.createHash(HT, nx, pAux.getIndex());
             }
             if (pAux.getMother() != null) {
-//                System.out.println("mama");
-//                System.out.println(pAux.getpMother().getName());
-//                System.out.println(pAux.getpMother().getIndex());
                 if (lNodes.indexInList(pAux.getpMother().getIndex()) == false) {
                     lNodes.addPerson(pAux.getpMother());
                     Node nx2;
@@ -109,14 +74,9 @@ public class Arbol {
                 }
             }
             if (pAux.getHijos() != null) {
-//                System.out.println(pAux.getHijos().getlen());
                 for (int j = 1; j <= pAux.getHijos().getlen(); j++) {
                     Person hAux = pAux.getHijos().getPerson(j);
-//                    System.out.println("");
-//                    System.out.println("nombre hijo         " + hAux.getName());
-//                    System.out.println("index hijo         " + hAux.getIndex());
                     if (lNodes.indexInList(hAux.getIndex()) == false) {
-//                        System.out.println(hAux.getName());
                         lNodes.addPerson(hAux);
                         Node nx1;
                         nx1 = graph.addNode(Integer.toString(hAux.getIndex()));
