@@ -5,8 +5,10 @@
 package com.mycompany.arbolgot;
 
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
 public class VPrincipal extends javax.swing.JFrame {
 
     ReadJSON M;
-//    FondoPanel fondo = new FondoPanel();
+    FondoPanel fondo = new FondoPanel();
     
     /**
      * Creates new form VPrincipal
@@ -31,7 +33,7 @@ public class VPrincipal extends javax.swing.JFrame {
         
         initComponents();
               
-//        this.setContentPane(fondo);
+        this.setContentPane(fondo);
         
     }
     
@@ -44,13 +46,19 @@ public class VPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
         B_JSON = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         //jPanel1.setOpaque(false);
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 34, -1, -1));
+        //new javax.swing.JPanel();
 
         B_JSON.setText("Cargar JSON");
         B_JSON.addActionListener(new java.awt.event.ActionListener() {
@@ -58,29 +66,9 @@ public class VPrincipal extends javax.swing.JFrame {
                 B_JSONActionPerformed(evt);
             }
         });
+        jPanel2.add(B_JSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 110, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(B_JSON, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
-                .addComponent(B_JSON, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,21 +136,22 @@ public class VPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_JSON;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-//    class FondoPanel extends JPanel{
-//        
-//        private Image imagen;
-//        
-//        @Override
-//        public void paint(Graphics g){
-//            imagen = new ImageIcon(getClass().getResource("/com.mycompany.arbolgot.imagenes/mapagot.png")).getImage();
-//            
-//            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-//            
-//            setOpaque(false);
-//            
-//            super.paint(g);
-//        }
-//    }
+    class FondoPanel extends JPanel{
+        
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/com.mycompany.arbolgot.imagenes/mapagot.png")).getImage();
+            
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
 }
