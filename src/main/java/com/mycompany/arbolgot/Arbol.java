@@ -13,7 +13,7 @@ import org.graphstream.ui.view.Viewer;
  *
  * @author astv06
  */
-public class Tree {
+public class Arbol {
 
     public MultiGraph graph;
     private List lPerson;
@@ -26,7 +26,7 @@ public class Tree {
      * @author Nathaly
      *
      */
-    public Tree() {
+    public Arbol() {
 
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
@@ -149,4 +149,37 @@ public class Tree {
         ht.addHash(hAux);
     }
 
+<<<<<<< HEAD:src/main/java/com/mycompany/arbolgot/Tree.java
+=======
+    
+/**
+ * retorna los integrantes de la generacion correspondiante
+ * a la cantidad de ramas escaladas en el arbol
+ * @author astv06
+ * @param n
+ * @param l
+ * @param p
+ * @return l
+*/     
+
+    public List getGeneration (int n, List l, Person p){
+        n -=1;
+        if (n > 1){
+            for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                Person pAux = p.getHijos().getPerson(i);
+                if (pAux.getHijos() != null){
+                    this.getGeneration(n, l, pAux);
+                }
+            }
+        }
+        if (n == 0){
+            for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                Person pAux = p.getHijos().getPerson(i);
+                l.addPerson(pAux);
+            }
+        }
+        return l;
+    }
+
+>>>>>>> parent of 89b684b (arbol person tree treeGOT):src/main/java/com/mycompany/arbolgot/Arbol.java
 }
