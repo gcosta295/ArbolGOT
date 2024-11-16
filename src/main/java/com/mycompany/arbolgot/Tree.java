@@ -7,7 +7,7 @@ package com.mycompany.arbolgot;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
-
+//comment
 /**
  *
  * @author astv06
