@@ -7,6 +7,7 @@ package com.mycompany.arbolgot;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Arbol {
     public MultiGraph graph;
     private List lPerson;
     private List lNodes;
+    private Viewer viewer;
 
     /**
      * Creacion del Arbol
@@ -28,6 +30,8 @@ public class Arbol {
 
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
+        this.viewer = null;
+        
     }
 
     /**
@@ -39,6 +43,10 @@ public class Arbol {
     public MultiGraph getGraph() {
         return graph;
     }
+    
+    public Viewer getViewer(){
+        return viewer;
+    }
 
     /**
      * método para la creación del grafo. Se vuelve cada persona un nodo con
@@ -49,6 +57,8 @@ public class Arbol {
      * @param persons
      */
     public void Graph(List persons) {
+        Viewer viewer = graph.display();
+        this.viewer=viewer;
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
                 + "    fill-color: pink;\n"
@@ -57,6 +67,14 @@ public class Arbol {
                 + "edge{\n"
                 + "    size: 2px,10px;\n"
                 + "    shape: angle;\n"
+                + "}"
+                + "node.clicked{\n"
+                + " fill-color: red;\n"
+                + "size: 15px,15px;\n"
+                + "}"
+                + "node.hover{\n"
+                + "fill-color: blue;\n"
+                + "size: 20px, 20px; \n"
                 + "}");
 //        graph.setAttribute("ui.stylesheet", "graph { fill-color: pink; }");
         HashTable HT = new HashTable();
@@ -67,6 +85,7 @@ public class Arbol {
                 Node nx;
                 nx = graph.addNode(Integer.toString(pAux.getIndex()));
                 nx.setAttribute("ui.label", pAux.getName());
+                nx.setAttribute("fill-color", "red");
                 this.createHash(HT, nx, pAux.getIndex());
             }
             if (pAux.getMother() != null) {
@@ -76,13 +95,14 @@ public class Arbol {
                     Node nx2;
                     nx2 = this.graph.addNode(Integer.toString(pAux.getpMother().getIndex()));
                     nx2.setAttribute("ui.label", pAux.getMother());
+                    nx2.setAttribute("ui.class", "mom");
                     this.createHash(HT, nx2, pAux.getIndex());
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
-                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).addAttribute("fill-color", "red");
+                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
 //                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
                 } else {
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
-                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).addAttribute("fill-color", "red");
+                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
 
 //                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
                 }
@@ -107,6 +127,8 @@ public class Arbol {
                 }
             }
         }
+        graph.addNode("A").setAttribute("fill-color", "red");
+        System.out.println(graph.getNode("1").getId());
 //        graph.setAttribute("ui.stylesheet", "node{\n"
 //                + "    size: 15px, 15px;\n"
 //                + "    fill-color: pink;\n"

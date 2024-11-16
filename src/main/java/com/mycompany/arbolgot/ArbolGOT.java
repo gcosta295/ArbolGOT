@@ -37,10 +37,13 @@ public class ArbolGOT {
 //                }
 //            }
 //        }
+        System.setProperty("org.graphstream.ui", "swing");
+        
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
+        clicks.setViewer(arbol.getViewer());
         clicks.Clicks1();
     }
 }
