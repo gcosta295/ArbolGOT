@@ -7,7 +7,7 @@ package com.mycompany.arbolgot;
  *
  * @author gabri
  */
-public class ArbolGOT {
+public class TreeGOT {
 //utilizar el programa con escala al 100% (configuracion)
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class ArbolGOT {
         List persons = M.Parse();
         persons = M.Arbol(persons);
         M.arreglarHijos(persons);
-        Arbol arbol = new Arbol();
+        Tree arbol = new Tree();
         arbol.Graph(persons);
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());

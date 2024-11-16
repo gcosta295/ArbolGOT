@@ -262,25 +262,4 @@ public class Person {
     public List getHijos() {
         return hijos;
     }
-
-/**
- * retorna los antecesores masculinos de 
- * la rama familiar
- * @author astv06
- * @param n
- * @param l
- * @return l
-*/         
-    public List getAnsesters (int n, List l){
-        if (n >= 0){
-            l.addPerson(this);
-            if (this.pFather != null){
-                Person pAux = this.pFather;
-                n -= 1;
-                pAux.getAnsesters(n, l);
-            }
-        }
-        return l;
-    }
-
 }

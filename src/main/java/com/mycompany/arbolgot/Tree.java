@@ -12,7 +12,7 @@ import org.graphstream.graph.implementations.MultiGraph;
  *
  * @author astv06
  */
-public class Arbol {
+public class Tree {
 
     public MultiGraph graph;
     private List lPerson;
@@ -24,7 +24,7 @@ public class Arbol {
      * @author Nathaly
      *
      */
-    public Arbol() {
+    public Tree() {
 
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
@@ -120,22 +120,66 @@ public class Arbol {
 */     
 
     public List getGeneration (int n, List l, Person p){
-        n -=1;
-        if (n > 1){
-            for (int i = 1; i <= p.getHijos().getlen(); i++) {
-                Person pAux = p.getHijos().getPerson(i);
-                if (pAux.getHijos() != null){
-                    this.getGeneration(n, l, pAux);
+        if (n >= 1) {
+            n -= 1;
+            if (n > 1) {
+                for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                    Person pAux = p.getHijos().getPerson(i);
+                    if (pAux.getHijos() != null) {
+                        this.getGeneration(n, l, pAux);
+                    }
                 }
             }
-        }
-        if (n == 0){
-            for (int i = 1; i <= p.getHijos().getlen(); i++) {
-                Person pAux = p.getHijos().getPerson(i);
-                l.addPerson(pAux);
+            if (n == 0) {
+                for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                    Person pAux = p.getHijos().getPerson(i);
+                    l.addPerson(pAux);
+                }
             }
+            return l;
+        } 
+        else {
+            return null;
         }
-        return l;
     }
 
+    /**
+ * retorna los ansestros de una persona según la cantidad
+ * de ramas escaladas en el arbol le sea indicada
+ * @author astv06
+ * @param n
+ * @param l
+ * @param p
+ * @return l
+*/
+    
+    public List getAnsester(int n, List l, Person p) {
+        if (n >= 0) {
+            if (n >= 1) {
+                if (p.getPFather() != null) {
+                    Person pAux = p.getPFather();
+                    this.getAnsester(n - 1, l, pAux);
+                } else {
+                    this.getAnsester(0, l, p);
+                }
+            }
+            if (n == 0) {
+                List gen = p.getPFather().getHijos();
+                for (int i = 1; i < gen.getlen(); i++) {
+                    Person pAux = gen.getPerson(i);
+                    if (l.indexInList(pAux.getIndex()) == false) {
+                        l.addPerson(pAux);
+                    }
+                    if (pAux.getHijos() != null) {
+                        for (int j = 1; j < pAux.getHijos().getlen(); j++) {
+                            this.getAnsester(0, l, pAux.getHijos().getPerson(j));
+                        }
+                    }
+                }
+            }
+            return l;
+        } else {
+            return null;
+        }
+    }
 }
