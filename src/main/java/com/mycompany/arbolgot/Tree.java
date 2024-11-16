@@ -7,6 +7,7 @@ package com.mycompany.arbolgot;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Tree {
     public MultiGraph graph;
     private List lPerson;
     private List lNodes;
+    private Viewer viewer;
 
     /**
      * Creacion del Arbol
@@ -28,6 +30,8 @@ public class Tree {
 
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
+        this.viewer = null;
+        
     }
 
     /**
@@ -39,6 +43,10 @@ public class Tree {
     public MultiGraph getGraph() {
         return graph;
     }
+    
+    public Viewer getViewer(){
+        return viewer;
+    }
 
     /**
      * método para la creación del grafo. Se vuelve cada persona un nodo con
@@ -49,6 +57,8 @@ public class Tree {
      * @param persons
      */
     public void Graph(List persons) {
+        Viewer viewer = graph.display();
+        this.viewer=viewer;
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
                 + "    fill-color: pink;\n"
@@ -57,7 +67,16 @@ public class Tree {
                 + "edge{\n"
                 + "    size: 2px,10px;\n"
                 + "    shape: angle;\n"
+                + "}"
+                + "node.clicked{\n"
+                + " fill-color: red;\n"
+                + "size: 15px,15px;\n"
+                + "}"
+                + "node.hover{\n"
+                + "fill-color: blue;\n"
+                + "size: 20px, 20px; \n"
                 + "}");
+//        graph.setAttribute("ui.stylesheet", "graph { fill-color: pink; }");
         HashTable HT = new HashTable();
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
@@ -66,21 +85,26 @@ public class Tree {
                 Node nx;
                 nx = graph.addNode(Integer.toString(pAux.getIndex()));
                 nx.setAttribute("ui.label", pAux.getName());
+                nx.setAttribute("fill-color", "red");
                 this.createHash(HT, nx, pAux.getIndex());
             }
             if (pAux.getMother() != null) {
                 if (lNodes.indexInList(pAux.getpMother().getIndex()) == false) {
+                    System.out.println("AA");
                     lNodes.addPerson(pAux.getpMother());
                     Node nx2;
                     nx2 = this.graph.addNode(Integer.toString(pAux.getpMother().getIndex()));
                     nx2.setAttribute("ui.label", pAux.getMother());
+                    nx2.setAttribute("ui.class", "mom");
                     this.createHash(HT, nx2, pAux.getIndex());
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
-                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).addAttribute("fill-color", "red");
-                } 
-                else {
+                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
+//                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
+                } else {
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
-                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).addAttribute("fill-color", "red");
+                    graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
+
+//                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
                 }
             }
             if (pAux.getHijos() != null) {
@@ -95,10 +119,27 @@ public class Tree {
                         this.createHash(HT, nx1, pAux.getIndex());
                         String y = Integer.toString(pAux.getIndex()) + Integer.toString(hAux.getIndex());
                         graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()), true);
+//                        graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()));
+//                        Edge f = graph.getEdge(y);
+//                        System.out.println(f.getId());
+//                        f.setAttribute("shape", "arrow");
                     }
                 }
             }
         }
+        graph.addNode("A").setAttribute("fill-color", "red");
+        System.out.println(graph.getNode("1").getId());
+//        graph.setAttribute("ui.stylesheet", "node{\n"
+//                + "    size: 15px, 15px;\n"
+//                + "    fill-color: pink;\n"
+//                + "    text-mode: normal; \n"
+//                + "}"
+//                + "edge{\n"
+//                + "    size: 2px,10px;\n"
+//                + "    shape: angle;\n"
+//                + "}");
+
+//        graph.addAttribute("ui.stylesheet", "edge{shape: arrow}");
     }
 
     public void createHash(HashTable ht, Object o, int index) {
@@ -108,78 +149,4 @@ public class Tree {
         ht.addHash(hAux);
     }
 
-    
-/**
- * retorna los integrantes de la generacion correspondiante
- * a la cantidad de ramas escaladas en el arbol
- * @author astv06
- * @param n
- * @param l
- * @param p
- * @return l
-*/     
-
-    public List getGeneration (int n, List l, Person p){
-        if (n >= 1) {
-            n -= 1;
-            if (n > 1) {
-                for (int i = 1; i <= p.getHijos().getlen(); i++) {
-                    Person pAux = p.getHijos().getPerson(i);
-                    if (pAux.getHijos() != null) {
-                        this.getGeneration(n, l, pAux);
-                    }
-                }
-            }
-            if (n == 0) {
-                for (int i = 1; i <= p.getHijos().getlen(); i++) {
-                    Person pAux = p.getHijos().getPerson(i);
-                    l.addPerson(pAux);
-                }
-            }
-            return l;
-        } 
-        else {
-            return null;
-        }
-    }
-
-    /**
- * retorna los ansestros de una persona según la cantidad
- * de ramas escaladas en el arbol le sea indicada
- * @author astv06
- * @param n
- * @param l
- * @param p
- * @return l
-*/
-    
-    public List getAnsester(int n, List l, Person p) {
-        if (n >= 0) {
-            if (n >= 1) {
-                if (p.getPFather() != null) {
-                    Person pAux = p.getPFather();
-                    this.getAnsester(n - 1, l, pAux);
-                } else {
-                    this.getAnsester(0, l, p);
-                }
-            }
-            if (n == 0) {
-                List gen = p.getPFather().getHijos();
-                for (int i = 1; i < gen.getlen(); i++) {
-                    Person pAux = gen.getPerson(i);
-                    if (l.indexInList(pAux.getIndex()) == false) {
-                        l.addPerson(pAux);
-                    }
-                    if (pAux.getHijos() != null) {
-                        for (int j = 1; j < pAux.getHijos().getlen(); j++) {
-                            this.getAnsester(0, l, pAux.getHijos().getPerson(j));
-                        }
-                    }
-                }
-            }
-            return l;
-        } else {
-            return null;
-        }
-    }
 }
