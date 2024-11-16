@@ -12,7 +12,7 @@ import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
 
 public class Clicks implements ViewerListener {
-
+//comment
     Graph graph;
     Viewer viewer;
     protected boolean loop = true;

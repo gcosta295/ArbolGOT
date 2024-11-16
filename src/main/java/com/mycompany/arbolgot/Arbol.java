@@ -31,7 +31,7 @@ public class Arbol {
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
         this.viewer = null;
-        
+//     algo   
     }
 
     /**
