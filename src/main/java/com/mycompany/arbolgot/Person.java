@@ -264,33 +264,6 @@ public class Person {
     }
 
 /**
- * retorna los integrantes de una generacion
- * @author astv06
- * @param n
- * @param l
- * @return l
-*/     
-
-    public List getGeneration (int n, List l){
-        n -=1;
-        if (n > 1){
-            for (int i = 1; i <= this.hijos.getlen(); i++) {
-                Person pAux = this.hijos.getPerson(i);
-                if (pAux.hijos != null){
-                    pAux.getGeneration(n, l);
-                }
-            }
-        }
-        if (n == 0){
-            for (int i = 1; i <= this.hijos.getlen(); i++) {
-                Person pAux = this.hijos.getPerson(i);
-                l.addPerson(pAux);
-            }
-        }
-        return l;
-    }
-
-/**
  * retorna los antecesores masculinos de 
  * la rama familiar
  * @author astv06

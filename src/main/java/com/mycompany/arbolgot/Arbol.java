@@ -108,4 +108,34 @@ public class Arbol {
         ht.addHash(hAux);
     }
 
+    
+/**
+ * retorna los integrantes de la generacion correspondiante
+ * a la cantidad de ramas escaladas en el arbol
+ * @author astv06
+ * @param n
+ * @param l
+ * @param p
+ * @return l
+*/     
+
+    public List getGeneration (int n, List l, Person p){
+        n -=1;
+        if (n > 1){
+            for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                Person pAux = p.getHijos().getPerson(i);
+                if (pAux.getHijos() != null){
+                    this.getGeneration(n, l, pAux);
+                }
+            }
+        }
+        if (n == 0){
+            for (int i = 1; i <= p.getHijos().getlen(); i++) {
+                Person pAux = p.getHijos().getPerson(i);
+                l.addPerson(pAux);
+            }
+        }
+        return l;
+    }
+
 }
