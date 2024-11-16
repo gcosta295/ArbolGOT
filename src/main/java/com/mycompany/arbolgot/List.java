@@ -200,6 +200,26 @@ public class List {
         }
         return null;
     }
+    
+    /**
+     * en base al titulo de la persona te encuentra la persona
+     *
+     * @author astv06
+     * @param pTitle
+     * @return sAux
+     */
+    public Person getTitlePerson(String pTitle) {
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getTitulo()!= null) {
+                if (pAux.getTitulo().contains(pTitle)) {
+                    return pAux;
+                }
+            }
+            pAux = pAux.getNext();
+        }
+        return null;
+    }
 
     /**
      * elimina una persona en la lista

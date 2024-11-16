@@ -262,4 +262,9 @@ public class Person {
     public List getHijos() {
         return hijos;
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
+    
 }
