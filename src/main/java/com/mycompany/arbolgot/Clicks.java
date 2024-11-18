@@ -4,17 +4,24 @@
  */
 package com.mycompany.arbolgot;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
+import org.jfree.layout.CenterLayout;
 
 public class Clicks implements ViewerListener {
 //comment
+
     Graph graph;
     Viewer viewer;
+    List persons;
     protected boolean loop = true;
 
 //    public static void main(String args[]) {
@@ -31,14 +38,19 @@ public class Clicks implements ViewerListener {
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
-    
-    public void setViewer(Viewer viewer){
-        this.viewer= viewer;
+
+    public void setViewer(Viewer viewer) {
+        this.viewer = viewer;
+    }
+
+    public void setPersons(List persons) {
+        this.persons = persons;
     }
 
     public Clicks() {
         this.graph = null;
-        this.viewer=null;
+        this.viewer = null;
+        this.persons = null;
     }
 
     public void Clicks1() {
@@ -86,6 +98,18 @@ public class Clicks implements ViewerListener {
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
+        JFrame f = new JFrame();
+        f.setLayout(new CenterLayout());
+        JPanel p = new JPanel();
+        int idd = Integer.parseInt(id);
+                f.setLocationRelativeTo(null);
+
+        p.add(new JLabel(persons.getPerson(idd).getName()));
+        f.add(p);
+        f.pack();
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setVisible(true);
+
     }
 
     public void buttonReleased(String id) {
@@ -95,13 +119,13 @@ public class Clicks implements ViewerListener {
 
     @Override
     public void mouseOver(String id) {
-        
+
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "hover");
     }
 
     public void mouseLeft(String id) {
-             Node nx = graph.getNode(id);
+        Node nx = graph.getNode(id);
         nx.removeAttribute("ui.class");
     }
 }
