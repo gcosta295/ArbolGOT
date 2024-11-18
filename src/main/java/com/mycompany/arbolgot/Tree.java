@@ -17,6 +17,7 @@ public class Tree {
     public MultiGraph graph;
     private List lPerson;
     private List lNodes;
+    
 
     /**
      * Creacion del Arbol
@@ -28,6 +29,8 @@ public class Tree {
 
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
+        this.viewer = null;
+//     algo   
     }
 
     /**
