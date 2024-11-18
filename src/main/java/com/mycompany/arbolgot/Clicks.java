@@ -4,16 +4,24 @@
  */
 package com.mycompany.arbolgot;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
+import org.jfree.layout.CenterLayout;
 
 public class Clicks implements ViewerListener {
 //comment
+
     Graph graph;
+    Viewer viewer;
+    List persons;
     protected boolean loop = true;
 
 //    public static void main(String args[]) {
@@ -31,8 +39,20 @@ public class Clicks implements ViewerListener {
         this.graph = graph;
     }
 
+
+    public void setViewer(Viewer viewer) {
+        this.viewer = viewer;
+    }
+
+    public void setPersons(List persons) {
+        this.persons = persons;
+    }
+
     public Clicks() {
         this.graph = null;
+        this.viewer = null;
+        this.persons = null;
+
     }
 
     public void Clicks1() {
@@ -40,7 +60,7 @@ public class Clicks implements ViewerListener {
         // connect the graph outputs to the viewer.
         // The viewer is a sink of the graph.
 
-        Viewer viewer = graph.display();
+        
         viewer.enableAutoLayout();
 
 //        // The default action when closing the view is to quit
@@ -77,18 +97,37 @@ public class Clicks implements ViewerListener {
     }
 
     public void buttonPushed(String id) {
-        System.out.println("Button pushed on node " + id);
+
+        Node nx = graph.getNode(id);
+        nx.setAttribute("ui.class", "clicked");
+        JFrame f = new JFrame();
+        f.setLayout(new CenterLayout());
+        JPanel p = new JPanel();
+        int idd = Integer.parseInt(id);
+                f.setLocationRelativeTo(null);
+
+        p.add(new JLabel(persons.getPerson(idd).getName()));
+        f.add(p);
+        f.pack();
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setVisible(true);
+
     }
 
     public void buttonReleased(String id) {
-        System.out.println("Button released on node " + id);
+        Node nx = graph.getNode(id);
+        nx.removeAttribute("ui.class");
     }
 
     public void mouseOver(String id) {
-        System.out.println("Need the Mouse Options to be activated");
+
+        Node nx = graph.getNode(id);
+        nx.setAttribute("ui.class", "hover");
     }
 
     public void mouseLeft(String id) {
-        System.out.println("Need the Mouse Options to be activated");
+        Node nx = graph.getNode(id);
+        nx.removeAttribute("ui.class");
+
     }
 }

@@ -7,6 +7,7 @@ package com.mycompany.arbolgot;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.ui.view.Viewer;
 //comment
 /**
  *
@@ -17,7 +18,7 @@ public class Tree {
     public MultiGraph graph;
     private List lPerson;
     private List lNodes;
-    
+    private Viewer viewer;
 
     /**
      * Creacion del Arbol
@@ -185,4 +186,10 @@ public class Tree {
             return null;
         }
     }
+
+    public Viewer getViewer() {
+        return viewer;
+    }
+    
+    
 }

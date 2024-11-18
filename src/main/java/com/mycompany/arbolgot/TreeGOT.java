@@ -21,6 +21,7 @@ public class TreeGOT {
         arbol.Graph(persons);
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
+        clicks.setViewer(arbol.getViewer());
         clicks.Clicks1();
     }
 }
