@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.arbolgot;
-
+//comment
 /**
  *
  * @author astv06
@@ -107,14 +107,14 @@ public class List {
      * @return boolean
      */
     public boolean indexInList(int pIndex) {
-        Person sAux = pFirst;
-        while (sAux != null) {
-            if (sAux.getIndex() == pIndex) {
-                return true;
+        boolean b = false;
+        for (int i = 1; i <= this.len; i++) {
+            Person pAux = this.getPerson(i);
+            if (pAux.getIndex() == pIndex) {
+                b = true;
             }
-            sAux = sAux.getNext();
         }
-        return false;
+        return b;
     }
 
     /**
@@ -195,7 +195,26 @@ public class List {
                 if (pAux.getMotin().contains(pMotin)) {
                     return pAux;
                 }
-
+            }
+            pAux = pAux.getNext();
+        }
+        return null;
+    }
+    
+    /**
+     * en base al titulo de la persona te encuentra la persona
+     *
+     * @author astv06
+     * @param pTitle
+     * @return sAux
+     */
+    public Person getTitlePerson(String pTitle) {
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getTitulo()!= null) {
+                if (pAux.getTitulo().contains(pTitle)) {
+                    return pAux;
+                }
             }
             pAux = pAux.getNext();
         }

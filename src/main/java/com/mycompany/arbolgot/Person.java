@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.arbolgot;
-
+//comment
 /**
  *
  * @author astv06
@@ -31,6 +31,11 @@ public class Person {
  * constructor de la persona 
  * @author astv06
 */ 
+    
+    public Person getpMother() {
+        return pMother;
+    }
+
     public Person() {
         this.name = null;
         this.number = null;
@@ -258,51 +263,8 @@ public class Person {
         return hijos;
     }
 
-/**
- * retorna los integrantes de una generacion
- * @author astv06
- * @param n
- * @param l
- * @return l
-*/     
-
-    public List getGeneration (int n, List l){
-        n -=1;
-        if (n > 1){
-            for (int i = 1; i <= this.hijos.getlen(); i++) {
-                Person pAux = this.hijos.getPerson(i);
-                if (pAux.hijos != null){
-                    pAux.getGeneration(n, l);
-                }
-            }
-        }
-        if (n == 0){
-            for (int i = 1; i <= this.hijos.getlen(); i++) {
-                Person pAux = this.hijos.getPerson(i);
-                l.addPerson(pAux);
-            }
-        }
-        return l;
+    public String getTitulo() {
+        return titulo;
     }
-
-/**
- * retorna los antecesores masculinos de 
- * la rama familiar
- * @author astv06
- * @param n
- * @param l
- * @return l
-*/         
-    public List getAnsesters (int n, List l){
-        if (n >= 0){
-            l.addPerson(this);
-            if (this.pFather != null){
-                Person pAux = this.pFather;
-                n -= 1;
-                pAux.getAnsesters(n, l);
-            }
-        }
-        return l;
-    }
-
+    
 }
