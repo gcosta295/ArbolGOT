@@ -2,6 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 package com.mycompany.arbolgot;
+
+import interfaces.*;
 //comment
 /**
  *
@@ -24,5 +26,8 @@ public class ArbolGOT {
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
         clicks.Clicks1();
+
+//          Inicio ven= new Inicio();
+//          ven.setVisible(true);
     }
 }
