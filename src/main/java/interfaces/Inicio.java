@@ -55,7 +55,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(B_Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/arbolgot/imagenes/inicio.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

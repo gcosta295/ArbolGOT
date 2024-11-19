@@ -114,7 +114,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.add(jDesktopPane_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 510, 420));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/arbolgot/imagenes/mapagotbla.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mapagotbla.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 450));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
 
