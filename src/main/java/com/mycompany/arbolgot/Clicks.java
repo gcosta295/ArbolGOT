@@ -4,17 +4,23 @@
  */
 package com.mycompany.arbolgot;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
+import org.jfree.layout.CenterLayout;
 
 public class Clicks implements ViewerListener {
 //comment
+
     Graph graph;
     Viewer viewer;
+    List persons;
     protected boolean loop = true;
 
 //    public static void main(String args[]) {
@@ -32,15 +38,20 @@ public class Clicks implements ViewerListener {
         this.graph = graph;
     }
     
-    public void setViewer(Viewer viewer){
-        this.viewer= viewer;
+    public void setViewer(Viewer viewer) {
+        this.viewer = viewer;
     }
-
+    
+    public void setPersons(List persons) {
+        this.persons = persons;
+    }
+    
     public Clicks() {
         this.graph = null;
-        this.viewer=null;
+        this.viewer = null;
+        this.persons = null;
     }
-
+    
     public void Clicks1() {
         // We do as usual to display a graph. This
         // connect the graph outputs to the viewer.
@@ -78,30 +89,47 @@ public class Clicks implements ViewerListener {
             // the nightly builds.
         }
     }
-
+    
     public void viewClosed(String id) {
         loop = false;
     }
-
+    
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
+//        JFrame f = new JFrame();
+//        f.setSize(200, 200);
+//        f.setLayout(new CenterLayout());
+//        JPanel p = new JPanel();
+//        int idd = Integer.parseInt(id);
+//        f.setLocationRelativeTo(null);
+//
+//        p.add(new JLabel(persons.getPerson(idd).getName()));
+//        
+////        f.pack();
+//        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        f.setVisible(true);
+//        Person persona = persons.getPerson(idd);
+//        System.out.println(persona.getAllInfo(persona));
+//        JTextField pp = new JTextField();
+//        pp.setText(persona.getAllInfo(persona));
+//        p.add(pp);
     }
-
+    
     public void buttonReleased(String id) {
         Node nx = graph.getNode(id);
         nx.removeAttribute("ui.class");
     }
-
+    
     @Override
     public void mouseOver(String id) {
         
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "hover");
     }
-
+    
     public void mouseLeft(String id) {
-             Node nx = graph.getNode(id);
+        Node nx = graph.getNode(id);
         nx.removeAttribute("ui.class");
     }
 }

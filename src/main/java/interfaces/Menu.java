@@ -1,5 +1,7 @@
 package interfaces;
 
+import com.mycompany.arbolgot.Arbol;
+import com.mycompany.arbolgot.Clicks;
 import com.mycompany.arbolgot.List;
 import com.mycompany.arbolgot.ReadJSON;
 
@@ -7,8 +9,6 @@ import com.mycompany.arbolgot.ReadJSON;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 /**
  *
  * @author Nathaly
@@ -18,11 +18,10 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    
     ReadJSON M;
-    
+
     public Menu() {
-        
+
         initComponents();
         this.M = new ReadJSON();
         this.setLocationRelativeTo(null);
@@ -134,44 +133,53 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_cambiarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_cambiarJSONActionPerformed
-        
+
         M.abrirArchivo();
         List persons = M.Parse();
         persons = M.Arbol(persons);
-        M.arreglarHijos(persons);
         
+        M.arreglarHijos(persons);
+//        System.out.println(persons.getPerson(1).getName());
+        System.setProperty("org.graphstream.ui", "swing");
+        Arbol arbol = new Arbol();
+        arbol.Graph(persons);
+        Clicks clicks = new Clicks();
+        clicks.setGraph(arbol.getGraph());
+        clicks.setViewer(arbol.getViewer());
+        clicks.Clicks1();
+
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
     private void B_arbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_arbolActionPerformed
-        
+
         IFmostrarArbol interArbol = new IFmostrarArbol();
         jDesktopPane_menu.add(interArbol);
         interArbol.setVisible(true);
-        
+
     }//GEN-LAST:event_B_arbolActionPerformed
 
     private void B_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_nombreActionPerformed
-        
+
         IFbuscarNombre interNombre = new IFbuscarNombre();
         jDesktopPane_menu.add(interNombre);
         interNombre.setVisible(true);
-        
+
     }//GEN-LAST:event_B_nombreActionPerformed
 
     private void B_antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_antepasadosActionPerformed
-        
+
         IFantepasados interAntepasados = new IFantepasados();
         jDesktopPane_menu.add(interAntepasados);
         interAntepasados.setVisible(true);
-        
+
     }//GEN-LAST:event_B_antepasadosActionPerformed
 
     private void B_generacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacionActionPerformed
-        
+
         IFgeneracion interGeneracion = new IFgeneracion();
         jDesktopPane_menu.add(interGeneracion);
         interGeneracion.setVisible(true);
-        
+
     }//GEN-LAST:event_B_generacionActionPerformed
 
     /**
