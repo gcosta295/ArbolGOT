@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.jfree.layout.CenterLayout;
-
+///comment
 /**
  *
  * @author gabri
