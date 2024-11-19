@@ -180,6 +180,26 @@ public class List {
         }
         return null;
     }
+    
+    /**
+     * en base al nombre de la persona retorna una lista 
+     * de personas que cumplen con ese nombre
+     *
+     * @author astv06
+     * @param pName
+     * @return l
+     */
+    public List getListOfNamedPerson(String pName) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pName)) {
+                l.addPerson(pAux);
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
+    }
 
     /**
      * en base al apodo de la persona te encuentra la persona
