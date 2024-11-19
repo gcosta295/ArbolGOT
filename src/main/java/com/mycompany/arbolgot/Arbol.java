@@ -61,6 +61,7 @@ public class Arbol {
     public void Graph(List persons) {
         Viewer viewer = graph.display();
         this.viewer=viewer;
+        
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
                 + "    fill-color: pink;\n"

@@ -25,9 +25,9 @@ public class ArbolGOT {
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
-        clicks.Clicks1();
+//        clicks.Clicks1();
 
-//          Inicio ven= new Inicio();
-//          ven.setVisible(true);
+          Inicio ven= new Inicio();
+          ven.setVisible(true);
     }
 }
