@@ -4,11 +4,13 @@
  */
 package com.mycompany.arbolgot;
 //comment
+
 /**
  *
  * @author astv06
  */
 public class Person {
+
     private String name;
     private String number;
     private String father;
@@ -27,11 +29,11 @@ public class Person {
     private int index;
     private String listHijos;
 
-/**
- * constructor de la persona 
- * @author astv06
-*/ 
-    
+    /**
+     * constructor de la persona
+     *
+     * @author astv06
+     */
     public Person getpMother() {
         return pMother;
     }
@@ -52,17 +54,17 @@ public class Person {
         this.next = null;
         this.pFather = null;
         this.index = 0;
-        this.pMother=null;
-        this.listHijos=null;
+        this.pMother = null;
+        this.listHijos = null;
     }
-    
-/**
- * hace una copia de todos los datos de una persona
- * menos del atributo next
- * @author astv06
- * @param p
-*/ 
-    public void copyData (Person p){
+
+    /**
+     * hace una copia de todos los datos de una persona menos del atributo next
+     *
+     * @author astv06
+     * @param p
+     */
+    public void copyData(Person p) {
         this.setName(p.name);
         this.setNumber(p.number);
         this.setFather(p.father);
@@ -79,46 +81,48 @@ public class Person {
         this.setIndex(p.index);
         this.pFather = p.pFather;
         this.setPMother(p.pMother);
-        this.listHijos= p.listHijos;
+        this.listHijos = p.listHijos;
     }
 
-/**
- * asigna un valor a la siguiente persona 
- * @author astv06
- * @param next
-*/ 
+    /**
+     * asigna un valor a la siguiente persona
+     *
+     * @author astv06
+     * @param next
+     */
     public void setNext(Person next) {
         this.next = next;
     }
 
-    public void setPMother(Person pMother){
-        this.pMother=pMother;
+    public void setPMother(Person pMother) {
+        this.pMother = pMother;
     }
-    public void setPFather(Person pFather){
-        this.pFather=pFather;
+
+    public void setPFather(Person pFather) {
+        this.pFather = pFather;
     }
-    
-/**
- * retorna el nombre de la persona 
- * @author astv06
- * @return name
-*/ 
+
+    /**
+     * retorna el nombre de la persona
+     *
+     * @author astv06
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-/**
- * retorna la siguiente persona de la lista 
- * @author astv06
- * @return next
-*/ 
+    /**
+     * retorna la siguiente persona de la lista
+     *
+     * @author astv06
+     * @return next
+     */
     public Person getNext() {
         return next;
-    } 
-    
- 
+    }
 
-    public String getMother(){
+    public String getMother() {
         return mother;
     }
 
@@ -212,53 +216,53 @@ public class Person {
     public void setIndex(int index) {
         this.index = index;
     }
-    
-    
 
-    
-    public String getFather(){
+    public String getFather() {
         return father;
     }
-    
-    public String getNumber(){
+
+    public String getNumber() {
         return number;
     }
-    
-    public void setListaHijos(String s){
-        this.listHijos=s;
+
+    public void setListaHijos(String s) {
+        this.listHijos = s;
     }
-    
-    public String getListaHijos(){
+
+    public String getListaHijos() {
         return listHijos;
     }
-    public Person getPFather(){
+
+    public Person getPFather() {
         return pFather;
     }
-    
 
-/**
- * retorna el apodo de la persona 
- * @author astv06
- * @return motin
-*/ 
+    /**
+     * retorna el apodo de la persona
+     *
+     * @author astv06
+     * @return motin
+     */
     public String getMotin() {
         return motin;
     }
 
-/**
- * retorna el indice de la persona 
- * @author astv06
- * @return index
-*/
+    /**
+     * retorna el indice de la persona
+     *
+     * @author astv06
+     * @return index
+     */
     public int getIndex() {
         return index;
     }
 
-/**
- * retorna la lista de hijos de la persona 
- * @author astv06
- * @return hijos
-*/    
+    /**
+     * retorna la lista de hijos de la persona
+     *
+     * @author astv06
+     * @return hijos
+     */
     public List getHijos() {
         return hijos;
     }
@@ -267,4 +271,96 @@ public class Person {
         return titulo;
     }
     
+    /**
+     * retorna los integrantes de una generacion
+     *
+     * @author astv06
+     * @param n
+     * @param l
+     * @return l
+     */
+    public List getGeneration(int n, List l) {
+        n -= 1;
+        if (n > 1) {
+            for (int i = 1; i <= this.hijos.getlen(); i++) {
+                Person pAux = this.hijos.getPerson(i);
+                if (pAux.hijos != null) {
+                    pAux.getGeneration(n, l);
+                }
+            }
+        }
+        if (n == 0) {
+            for (int i = 1; i <= this.hijos.getlen(); i++) {
+                Person pAux = this.hijos.getPerson(i);
+                l.addPerson(pAux);
+            }
+        }
+        return l;
+    }
+
+    /**
+     * retorna los antecesores masculinos de la rama familiar
+     *
+     * @author astv06
+     * @param n
+     * @param l
+     * @return l
+     */
+    public List getAnsesters(int n, List l) {
+        if (n >= 0) {
+            l.addPerson(this);
+            if (this.pFather != null) {
+                Person pAux = this.pFather;
+                n -= 1;
+                pAux.getAnsesters(n, l);
+            }
+        }
+        return l;
+    }
+
+    public String getAllInfo(Person p) {
+        String x;
+        String n;
+        if (p.number != null) {
+            n = p.name + " " + p.number;
+        } else {
+            n = p.name;
+        }
+        x = n + "\n";
+        if (p.motin != null) {
+            x += "Motin:" + " " + p.motin + "\n";
+        }
+
+        if (p.father != null) {
+            x += "Father:" + " " + p.father + "\n";
+        }
+        if (p.mother != null) {
+            x += "Mother:" + " " + p.mother + "\n";
+        }
+        if (p.titulo != null) {
+            x += "Title:" + " " + p.titulo + "\n";
+        }
+        if (p.esposo != null) {
+            x += "Espos@:" + " " + p.esposo + "\n";
+        }
+        if (p.hairColor != null) {
+            x += "Hair Color:" + " " + p.hairColor + "\n";
+        }
+        if (p.eyesColor != null) {
+            x += "Eye Color:" + " " + p.eyesColor + "\n";
+        }
+        if (p.listHijos != null) {
+            x += "Hijos:" + " " + p.listHijos + "\n";
+        }
+        if (p.notes != null) {
+            x += "Notes:" + " " + p.notes + "\n";
+        }
+        if (p.fate != null) {
+            x += "Fate:" + " " + p.fate + "\n";
+        }
+ 
+
+        return x;
+    }
+
 }

@@ -4,12 +4,14 @@
  */
 package com.mycompany.arbolgot;
 
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
@@ -97,23 +99,23 @@ public class Clicks implements ViewerListener {
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
-//        JFrame f = new JFrame();
-//        f.setSize(200, 200);
-//        f.setLayout(new CenterLayout());
-//        JPanel p = new JPanel();
-//        int idd = Integer.parseInt(id);
-//        f.setLocationRelativeTo(null);
-//
-//        p.add(new JLabel(persons.getPerson(idd).getName()));
-//        
-////        f.pack();
-//        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        f.setVisible(true);
-//        Person persona = persons.getPerson(idd);
-//        System.out.println(persona.getAllInfo(persona));
-//        JTextField pp = new JTextField();
-//        pp.setText(persona.getAllInfo(persona));
-//        p.add(pp);
+        JFrame f = new JFrame();
+        f.setSize(200, 200);
+        f.setLayout(new CenterLayout());
+        JPanel p = new JPanel();
+        int idd = Integer.parseInt(id);
+        f.setLocationRelativeTo(null);
+
+        p.add(new JLabel(persons.getPerson(idd).getName()));
+        
+//        f.pack();
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setVisible(true);
+        Person persona = persons.getPerson(idd);
+        System.out.println(persona.getAllInfo(persona));
+        JTextField pp = new JTextField();
+        pp.setText(persona.getAllInfo(persona));
+        p.add(pp);
     }
     
     public void buttonReleased(String id) {
