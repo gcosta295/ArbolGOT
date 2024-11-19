@@ -3,6 +3,11 @@
  */
 package com.mycompany.arbolgot;
 //comment
+
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author gabri
@@ -13,10 +18,21 @@ public class ArbolGOT {
     public static void main(String[] args) {
 
         ReadJSON M = new ReadJSON();
-        M.abrirArchivo();
-        List persons = M.Parse();
-        persons = M.Arbol(persons);
-        M.arreglarHijos(persons);
+        List persons = new List();
+        while (persons.getlen() == 0) {
+            try {
+                M.abrirArchivo();
+                persons = M.Parse();
+                persons = M.Arbol(persons);
+            }
+            catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"\nseleccione nuevamente su archivo",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        }
+          M.arreglarHijos(persons);
         System.setProperty("org.graphstream.ui", "swing"); 
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
