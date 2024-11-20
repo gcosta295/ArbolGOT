@@ -45,6 +45,7 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jC_nombres = new javax.swing.JComboBox<>();
         jB_buscar = new javax.swing.JButton();
+        jB_2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -69,6 +70,13 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             }
         });
 
+        jB_2.setText("B");
+        jB_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,8 +88,9 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jB_2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB_buscar)
-                    .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,7 +102,9 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
                 .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(jB_buscar)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jB_2)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 410, 310));
@@ -113,10 +124,29 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             jC_nombres.addItem(pAux);
         
         }
+        
     }//GEN-LAST:event_jB_buscarActionPerformed
+
+    private void jB_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_2ActionPerformed
+        
+        
+        
+//         for (int i = 1; i < persons.getlen(); i++) {
+//             
+//             if (jT_nombre.getText() == persons.getPerson(i).getName()) {
+//                 
+//            }
+//            String pAux = persons.getPerson(i).getName();
+//            System.out.println(pAux);
+//            jC_nombres.addItem(pAux);
+//        
+//        }
+        
+    }//GEN-LAST:event_jB_2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jB_2;
     private javax.swing.JButton jB_buscar;
     private javax.swing.JComboBox<String> jC_nombres;
     private javax.swing.JLabel jLabel1;
