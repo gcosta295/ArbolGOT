@@ -4,6 +4,7 @@ import com.mycompany.arbolgot.Arbol;
 import com.mycompany.arbolgot.Clicks;
 import com.mycompany.arbolgot.List;
 import com.mycompany.arbolgot.ReadJSON;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +19,8 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    ReadJSON M;
+     ReadJSON M;
+    static List persons;
 
     public Menu() {
 
@@ -29,6 +31,11 @@ public class Menu extends javax.swing.JFrame {
         this.setResizable(false);
     }
 
+    public void setPersons(List persons) {
+        this.persons = persons;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,18 +144,23 @@ public class Menu extends javax.swing.JFrame {
     private void B_cambiarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_cambiarJSONActionPerformed
 
         M.abrirArchivo();
-        List persons = M.Parse();
+        persons = M.Parse();
         persons = M.Arbol(persons);
         
         M.arreglarHijos(persons);
-        System.out.println(persons.getPerson(1).getName());
+//        System.out.println(persons.getPerson(1).getName());
         System.setProperty("org.graphstream.ui", "swing");
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.Clicks1();
+        JOptionPane.showMessageDialog(this, "Se ha cargado el JSON");
+        for (int i = 1; i < persons.getlen(); i++) {
+            String pAux = persons.getPerson(i).getName();
+            System.out.println(pAux);
+        }
+//        Clicks clicks = new Clicks();
+//        clicks.setGraph(arbol.getGraph());
+//        clicks.setViewer(arbol.getViewer());
+//        clicks.Clicks1();
 
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
@@ -162,9 +174,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_nombreActionPerformed
 
-        IFbuscarNombre interNombre = new IFbuscarNombre();
+        IFbuscarNombre interNombre = new IFbuscarNombre(persons);
         jDesktopPane_menu.add(interNombre);
         interNombre.setVisible(true);
+        
 
     }//GEN-LAST:event_B_nombreActionPerformed
 

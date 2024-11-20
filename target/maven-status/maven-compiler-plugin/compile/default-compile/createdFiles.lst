@@ -6,6 +6,7 @@ interfaces\IFantepasados.class
 interfaces\IFmostrarArbol.class
 interfaces\Menu.class
 interfaces\Menu$2.class
+interfaces\IFbuscarNombre$1.class
 com\mycompany\arbolgot\Clicks.class
 com\mycompany\arbolgot\HashTable.class
 interfaces\Menu$5.class
@@ -13,5 +14,6 @@ interfaces\Menu$3.class
 interfaces\Inicio$1.class
 interfaces\IFbuscarNombre.class
 com\mycompany\arbolgot\Hash.class
+interfaces\IFbuscarNombre$2.class
 interfaces\Menu$1.class
 interfaces\Menu$6.class
