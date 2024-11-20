@@ -1,9 +1,7 @@
-interfaces\NewJFrame.class
 interfaces\Inicio$2.class
 interfaces\IFgeneracion.class
 interfaces\Inicio.class
 interfaces\Menu$4.class
-interfaces\NewJFrame$1.class
 interfaces\IFantepasados.class
 interfaces\IFmostrarArbol.class
 interfaces\Menu.class

@@ -101,6 +101,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(B_cambiarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 150, 50));
 
+        jDesktopPane_menu.setBackground(java.awt.Color.lightGray);
+
         javax.swing.GroupLayout jDesktopPane_menuLayout = new javax.swing.GroupLayout(jDesktopPane_menu);
         jDesktopPane_menu.setLayout(jDesktopPane_menuLayout);
         jDesktopPane_menuLayout.setHorizontalGroup(
@@ -139,7 +141,7 @@ public class Menu extends javax.swing.JFrame {
         persons = M.Arbol(persons);
         
         M.arreglarHijos(persons);
-//        System.out.println(persons.getPerson(1).getName());
+        System.out.println(persons.getPerson(1).getName());
         System.setProperty("org.graphstream.ui", "swing");
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
