@@ -1,3 +1,4 @@
+interfaces\PersonaSquare.class
 interfaces\Menu.class
 interfaces\Menu$2.class
 com\mycompany\arbolgot\Clicks.class
@@ -7,6 +8,7 @@ interfaces\Inicio$1.class
 interfaces\IFbuscarNombre.class
 com\mycompany\arbolgot\Hash.class
 interfaces\Menu$6.class
+interfaces\PersonaSquare$1.class
 interfaces\NewJFrame.class
 interfaces\Inicio$2.class
 interfaces\IFgeneracion.class

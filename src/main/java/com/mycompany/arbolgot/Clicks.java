@@ -4,6 +4,7 @@
  */
 package com.mycompany.arbolgot;
 
+import interfaces.PersonaSquare;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ public class Clicks implements ViewerListener {
     Graph graph;
     Viewer viewer;
     List persons;
+    Boolean f;
     protected boolean loop = true;
 
 //    public static void main(String args[]) {
@@ -52,6 +54,8 @@ public class Clicks implements ViewerListener {
         this.graph = null;
         this.viewer = null;
         this.persons = null;
+        
+        
     }
     
     public void Clicks1() {
@@ -80,16 +84,24 @@ public class Clicks implements ViewerListener {
         // pump() method before each use of the graph to copy back events
         // that have already occurred in the viewer thread inside
         // our thread.
-        while (loop) {
-            fromViewer.pump(); // or fromViewer.blockingPump(); in the nightly builds
-
-            // here your simulation code.
-            // You do not necessarily need to use a loop, this is only an example.
-            // as long as you call pump() before using the graph. pump() is non
-            // blocking.  If you only use the loop to look at event, use blockingPump()
-            // to avoid 100% CPU usage. The blockingPump() method is only available from
-            // the nightly builds.
-        }
+        
+        new Thread(() ->{
+//            System.out.println(Thread.currentThread().getName());
+            while(true){
+                fromViewer.pump();
+            }
+        }).start();
+    
+//        while (loop) {
+//            fromViewer.pump(); // or fromViewer.blockingPump(); in the nightly builds
+//
+//            // here your simulation code.
+//            // You do not necessarily need to use a loop, this is only an example.
+//            // as long as you call pump() before using the graph. pump() is non
+//            // blocking.  If you only use the loop to look at event, use blockingPump()
+//            // to avoid 100% CPU usage. The blockingPump() method is only available from
+//            // the nightly builds.
+//        }
     }
     
     public void viewClosed(String id) {
@@ -99,23 +111,13 @@ public class Clicks implements ViewerListener {
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
-        JFrame f = new JFrame();
-        f.setSize(200, 200);
-        f.setLayout(new CenterLayout());
-        JPanel p = new JPanel();
         int idd = Integer.parseInt(id);
-        f.setLocationRelativeTo(null);
-
-        p.add(new JLabel(persons.getPerson(idd).getName()));
-        
-//        f.pack();
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        f.setVisible(true);
         Person persona = persons.getPerson(idd);
-        System.out.println(persona.getAllInfo(persona));
-        JTextField pp = new JTextField();
-        pp.setText(persona.getAllInfo(persona));
-        p.add(pp);
+        PersonaSquare t = new PersonaSquare();
+        t.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        t.setPer(persona);
+        
+        
     }
     
     public void buttonReleased(String id) {

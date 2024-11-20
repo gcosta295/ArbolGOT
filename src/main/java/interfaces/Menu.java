@@ -4,6 +4,10 @@ import com.mycompany.arbolgot.Arbol;
 import com.mycompany.arbolgot.Clicks;
 import com.mycompany.arbolgot.List;
 import com.mycompany.arbolgot.ReadJSON;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -146,8 +150,8 @@ public class Menu extends javax.swing.JFrame {
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
+        clicks.setPersons(persons);
         clicks.Clicks1();
-
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
     private void B_arbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_arbolActionPerformed
