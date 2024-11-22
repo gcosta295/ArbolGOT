@@ -12,7 +12,6 @@ com\mycompany\arbolgot\Clicks.class
 com\mycompany\arbolgot\HashTable.class
 interfaces\Menu$5.class
 interfaces\Menu$3.class
-interfaces\IFbuscarNombre$4.class
 interfaces\Inicio$1.class
 interfaces\IFbuscarNombre.class
 com\mycompany\arbolgot\Hash.class
