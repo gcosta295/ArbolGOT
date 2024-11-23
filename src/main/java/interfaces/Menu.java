@@ -26,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-     ReadJSON M;
+    ReadJSON M;
     static List persons;
 
     public Menu() {
@@ -156,9 +156,9 @@ public class Menu extends javax.swing.JFrame {
         
         M.arreglarHijos(persons);
 //        System.out.println(persons.getPerson(1).getName());
-        System.setProperty("org.graphstream.ui", "swing");
-        Arbol arbol = new Arbol();
-        arbol.Graph(persons);
+//        System.setProperty("org.graphstream.ui", "swing");
+//        Arbol arbol = new Arbol();
+//        arbol.Graph(persons);
 
         JOptionPane.showMessageDialog(this, "Se ha cargado el JSON");
         for (int i = 1; i < persons.getlen(); i++) {
@@ -171,19 +171,29 @@ public class Menu extends javax.swing.JFrame {
 //        clicks.Clicks1();
 
 
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.setPersons(persons);
-        clicks.Clicks1();
+//        Clicks clicks = new Clicks();
+//        clicks.setGraph(arbol.getGraph());
+//        clicks.setViewer(arbol.getViewer());
+//        clicks.setPersons(persons);
+//        clicks.Clicks1();
 
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
     private void B_arbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_arbolActionPerformed
 
-        IFmostrarArbol interArbol = new IFmostrarArbol();
-        jDesktopPane_menu.add(interArbol);
-        interArbol.setVisible(true);
+//        IFmostrarArbol interArbol = new IFmostrarArbol();
+//        jDesktopPane_menu.add(interArbol);
+//        interArbol.setVisible(true);
+
+        System.setProperty("org.graphstream.ui", "swing");
+        Arbol arbol = new Arbol();
+        arbol.Graph(persons);
+        
+        Clicks clicks = new Clicks();
+        clicks.setGraph(arbol.getGraph());
+        clicks.setViewer(arbol.getViewer());
+        clicks.setPersons(persons);
+        clicks.Clicks1();
 
     }//GEN-LAST:event_B_arbolActionPerformed
 
