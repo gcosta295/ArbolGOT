@@ -93,7 +93,6 @@ public class Arbol {
             }
             if (pAux.getMother() != null) {
                 if (lNodes.indexInList(pAux.getpMother().getIndex()) == false) {
-                    System.out.println("AA");
                     lNodes.addPerson(pAux.getpMother());
                     Node nx2;
                     nx2 = this.graph.addNode(Integer.toString(pAux.getpMother().getIndex()));
@@ -130,8 +129,6 @@ public class Arbol {
                 }
             }
         }
-        graph.addNode("A").setAttribute("fill-color", "red");
-        System.out.println(graph.getNode("1").getId());
 //        graph.setAttribute("ui.stylesheet", "node{\n"
 //                + "    size: 15px, 15px;\n"
 //                + "    fill-color: pink;\n"
