@@ -208,7 +208,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_antepasadosActionPerformed
 
-        IFantepasados interAntepasados = new IFantepasados();
+        IFantepasados interAntepasados = new IFantepasados(persons);
         jDesktopPane_menu.add(interAntepasados);
         interAntepasados.setVisible(true);
 
@@ -216,7 +216,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_generacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacionActionPerformed
 
-        IFgeneracion interGeneracion = new IFgeneracion();
+        IFgeneracion interGeneracion = new IFgeneracion(persons);
         jDesktopPane_menu.add(interGeneracion);
         interGeneracion.setVisible(true);
 

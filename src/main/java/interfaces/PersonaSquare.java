@@ -47,7 +47,7 @@ public class PersonaSquare extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(124, 50, 124));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         NAME.setFont(new java.awt.Font("Myriad CAD", 2, 12)); // NOI18N
         NAME.setForeground(new java.awt.Color(255, 255, 255));
