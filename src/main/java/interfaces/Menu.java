@@ -159,6 +159,7 @@ public class Menu extends javax.swing.JFrame {
         System.setProperty("org.graphstream.ui", "swing");
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
+
         JOptionPane.showMessageDialog(this, "Se ha cargado el JSON");
         for (int i = 1; i < persons.getlen(); i++) {
             String pAux = persons.getPerson(i).getName();
