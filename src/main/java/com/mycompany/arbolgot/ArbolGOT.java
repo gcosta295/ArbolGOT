@@ -4,6 +4,7 @@
 package com.mycompany.arbolgot;
 //comment
 
+import interfaces.Menu;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -20,7 +21,6 @@ public class ArbolGOT {
 
     public static void main(String[] args) {
 
-        
         ReadJSON M = new ReadJSON();
         M.abrirArchivo();
         List persons = M.Parse();
@@ -33,6 +33,12 @@ public class ArbolGOT {
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
         clicks.setPersons(persons);
+        Menu m = new Menu();
         clicks.Clicks1();
+    
+                
+        
+        
+     
     }
 }
