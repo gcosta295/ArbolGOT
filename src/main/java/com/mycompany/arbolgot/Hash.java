@@ -4,9 +4,6 @@
  */
 package com.mycompany.arbolgot;
 //comment2
-
-import org.graphstream.graph.Node;
-
 /**
  *
  * @author astv06
@@ -14,7 +11,7 @@ import org.graphstream.graph.Node;
 public class Hash {
     
     private int key;
-    private Person data;
+    private Object data;
     private Hash next;
 
     public Hash() {
@@ -27,7 +24,7 @@ public class Hash {
         return key;
     }
 
-    public Person getData() {
+    public Object getData() {
         return data;
     }
 
@@ -39,7 +36,7 @@ public class Hash {
         this.key = key;
     }
 
-    public void setData(Person data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

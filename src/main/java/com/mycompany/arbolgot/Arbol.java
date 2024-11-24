@@ -21,7 +21,6 @@ public class Arbol {
     private List lPerson;
     private List lNodes;
     private Viewer viewer;
-    private HashTable HashTable;
 
     /**
      * Creacion del Arbol
@@ -34,7 +33,6 @@ public class Arbol {
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
         this.viewer = null;
-        this.HashTable=null;
 //     algo   
     }
 
@@ -48,9 +46,6 @@ public class Arbol {
         return graph;
     }
     
-    public void setViewer(){
-        viewer = graph.display();
-    }
     public Viewer getViewer(){
         return viewer;
     }
@@ -65,9 +60,8 @@ public class Arbol {
      */
     public void Graph(List persons) {
         Viewer viewer = graph.display();
-//      
         this.viewer=viewer;
-//        
+        
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
                 + "    fill-color: pink;\n"
@@ -86,7 +80,7 @@ public class Arbol {
                 + "size: 20px, 20px; \n"
                 + "}");
 //        graph.setAttribute("ui.stylesheet", "graph { fill-color: pink; }");
-        this.HashTable = new HashTable();
+        HashTable HT = new HashTable();
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
             if (lNodes.indexInList(pAux.getIndex()) == false) {
@@ -94,7 +88,8 @@ public class Arbol {
                 Node nx;
                 nx = graph.addNode(Integer.toString(pAux.getIndex()));
                 nx.setAttribute("ui.label", pAux.getName());
-                this.createHash(HashTable, pAux, pAux.getIndex());
+                nx.setAttribute("fill-color", "red");
+                this.createHash(HT, nx, pAux.getIndex());
             }
             if (pAux.getMother() != null) {
                 if (lNodes.indexInList(pAux.getpMother().getIndex()) == false) {
@@ -103,7 +98,7 @@ public class Arbol {
                     nx2 = this.graph.addNode(Integer.toString(pAux.getpMother().getIndex()));
                     nx2.setAttribute("ui.label", pAux.getMother());
                     nx2.setAttribute("ui.class", "mom");
-                    this.createHash(HashTable, pAux.getpMother(), pAux.getpMother().getIndex());
+                    this.createHash(HT, nx2, pAux.getIndex());
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
                     graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
 //                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
@@ -123,7 +118,7 @@ public class Arbol {
                         nx1 = graph.addNode(Integer.toString(hAux.getIndex()));
                         nx1.setAttribute("ui.label", hAux.getName());
 
-                        this.createHash(HashTable, hAux, hAux.getIndex());
+                        this.createHash(HT, nx1, pAux.getIndex());
                         String y = Integer.toString(pAux.getIndex()) + Integer.toString(hAux.getIndex());
                         graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()), true);
 //                        graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()));
@@ -134,16 +129,20 @@ public class Arbol {
                 }
             }
         }
+//        graph.setAttribute("ui.stylesheet", "node{\n"
+//                + "    size: 15px, 15px;\n"
+//                + "    fill-color: pink;\n"
+//                + "    text-mode: normal; \n"
+//                + "}"
+//                + "edge{\n"
+//                + "    size: 2px,10px;\n"
+//                + "    shape: angle;\n"
+//                + "}");
 
+//        graph.addAttribute("ui.stylesheet", "edge{shape: arrow}");
     }
 
-    public HashTable getHashTable() {
-        return HashTable;
-    }
-    
-    
-
-    public void createHash(HashTable ht, Person o, int index) {
+    public void createHash(HashTable ht, Object o, int index) {
         Hash hAux = new Hash();
         hAux.setData(o);
         hAux.setKey(index);
