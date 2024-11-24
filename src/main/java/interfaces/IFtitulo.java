@@ -19,7 +19,7 @@ import org.graphstream.graph.Graph;
  *
  * @author Nathaly
  */
-public class IFgeneracion extends javax.swing.JInternalFrame {
+public class IFtitulo extends javax.swing.JInternalFrame {
 
     static List persons;
     static HashTable ht;
@@ -28,18 +28,14 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
     /**
      * Creates new form IFgeneracion
      */
-    public IFgeneracion(List L) {
+    public IFtitulo(List L) {
         initComponents();
         this.setSize(400, 300);
-        this.setTitle("Generaciones");
+        this.setTitle("Titulos");
         this.persons = L;
-        this.nombre = "";
 
     }
 
-    public void setPersons(List persons) {
-        this.persons = persons;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +50,6 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jC_nombres = new javax.swing.JComboBox<>();
         jB_cargarNombres = new javax.swing.JButton();
-        jB_buscar = new javax.swing.JButton();
         jB_cargarNombres1 = new javax.swing.JButton();
 
         setClosable(true);
@@ -69,13 +64,6 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
         jB_cargarNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_cargarNombresActionPerformed(evt);
-            }
-        });
-
-        jB_buscar.setText("buscar");
-        jB_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_buscarActionPerformed(evt);
             }
         });
 
@@ -99,11 +87,9 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jB_cargarNombres)
-                            .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jB_cargarNombres1))
-                        .addGap(66, 66, 66)
-                        .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addComponent(jB_cargarNombres1)
+                            .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,14 +97,11 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jB_cargarNombres)
-                        .addGap(18, 18, 18)
-                        .addComponent(jB_cargarNombres1))
-                    .addComponent(jB_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jB_cargarNombres)
+                .addGap(18, 18, 18)
+                .addComponent(jB_cargarNombres1)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
@@ -129,25 +112,24 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
 
-       System.out.println(nombre);
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
+        
+        List titles = new List();
+        
         while (pAux != null) {
-            if (pAux.getName().contains(nombre)) {
-
-                jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+            if (pAux.getTitulo()!=null){
+                
+                 System.out.println(pAux.getName());
+                    jC_nombres.addItem(pAux.getTitulo());
 
             }
+            
+
             pAux = pAux.getNext();
         }
 
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
-
-    private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-
-        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona qu quieres buscar");
-
-    }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
 
@@ -193,7 +175,6 @@ public class IFgeneracion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_buscar;
     private javax.swing.JButton jB_cargarNombres;
     private javax.swing.JButton jB_cargarNombres1;
     private javax.swing.JComboBox<String> jC_nombres;
