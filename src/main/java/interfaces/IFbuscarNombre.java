@@ -147,7 +147,6 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
         int y = 1;
-        System.out.println(nombre);
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
         while (pAux != null) {
@@ -190,27 +189,26 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             Object h = jC_nombres.getSelectedItem();
             String a = h.toString();
             String nums = a.replaceAll("[^0-9]", "");
-            System.out.println(nums);
             Hash x = ht.serchHashTable(Integer.parseInt(nums));
             Person persona = x.getData();
 
-        Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
+            Graph grafo = arbol.getGraph();
+            arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
 
-        List descendants = new List();
-        descendants = persona.getDesenders(descendants);
+            List descendants = new List();
+            descendants = persona.getDesenders(descendants);
 
-        for (int i = 1; i <= persons.getlen(); i++) {
-            Person aux = persons.getPerson(i);
-            
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
-        }
-        for (int i = 1; i <= descendants.getlen(); i++) {
-            Person aux = descendants.getPerson(i);
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
-        }
+            for (int i = 1; i <= persons.getlen(); i++) {
+                Person aux = persons.getPerson(i);
+
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+            }
+            for (int i = 1; i <= descendants.getlen(); i++) {
+                Person aux = descendants.getPerson(i);
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
+            }
 
 
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed

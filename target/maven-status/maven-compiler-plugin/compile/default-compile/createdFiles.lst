@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-=======
-interfaces\IFbuscarNombre$3.class
-interfaces\PersonaSquare.class
-interfaces\IFgeneracion$2.class
-interfaces\IFantepasados$3.class
-interfaces\IFbuscarNombre$2.class
-interfaces\PersonaSquare$1.class
-interfaces\IFantepasados$5.class
-interfaces\IFantepasados$2.class
-interfaces\IFbuscarNombre$1.class
-interfaces\IFantepasados$4.class
-interfaces\IFbuscarNombre$4.class
-interfaces\IFantepasados$1.class
-interfaces\IFgeneracion$1.class
->>>>>>> gaby
+interfaces/IFantepasados$3.class
+interfaces/IFantepasados$5.class
+interfaces/IFantepasados$4.class
