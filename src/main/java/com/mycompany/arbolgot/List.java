@@ -181,6 +181,26 @@ public class List {
         }
         return null;
     }
+    
+    /**
+     * en base al nombre de la persona retorna una lista 
+     * de personas que cumplen con ese nombre
+     *
+     * @author astv06
+     * @param pName
+     * @return l
+     */
+    public List getListOfNamedPerson(String pName) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pName)) {
+                l.addPerson(pAux);
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
+    }
 
     public List getNamedPersonList(String pName) {
         List l = new List();
@@ -234,6 +254,26 @@ public class List {
             pAux = pAux.getNext();
         }
         return null;
+    }
+    
+    /**
+     * en base al titulo de la persona retorna una lista 
+     * de personas que cumplen con ese titulo
+     *
+     * @author astv06
+     * @param pTitle
+     * @return l
+     */
+    public List getListOfTitlePerson(String pTitle) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pTitle)) {
+                l.addPerson(pAux);
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
     }
 
     /**

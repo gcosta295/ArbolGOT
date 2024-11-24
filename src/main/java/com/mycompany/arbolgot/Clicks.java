@@ -13,7 +13,6 @@ import org.graphstream.ui.view.ViewerPipe;
 
 public class Clicks implements ViewerListener {
 //comment
-
     Graph graph;
     Viewer viewer;
     List persons;
@@ -36,8 +35,8 @@ public class Clicks implements ViewerListener {
         this.graph = graph;
     }
     
-    public void setViewer(Viewer viewer) {
-        this.viewer = viewer;
+    public void setViewer(Viewer viewer){
+        this.viewer= viewer;
     }
     
     public void setPersons(List persons) {
@@ -50,10 +49,9 @@ public class Clicks implements ViewerListener {
     
     public Clicks() {
         this.graph = null;
+        this.viewer=null;
         this.viewer = null;
         this.persons = null;
-        
-        
     }
     
     public HashTable getHT(){
@@ -99,8 +97,6 @@ public class Clicks implements ViewerListener {
         PersonaSquare t = new PersonaSquare();
         t.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         t.setPer(persona);
-        
-        
     }
     
     public void buttonReleased(String id) {
@@ -116,7 +112,7 @@ public class Clicks implements ViewerListener {
     }
     
     public void mouseLeft(String id) {
-        Node nx = graph.getNode(id);
+             Node nx = graph.getNode(id);
         nx.removeAttribute("ui.class");
     }
 }
