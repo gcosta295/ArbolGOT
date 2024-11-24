@@ -281,7 +281,7 @@ public class Person {
      */
     public List getGeneration(int n, List l) {
         n -= 1;
-        if (n > 1) {
+        if (n > 0) {
             for (int i = 1; i <= this.hijos.getlen(); i++) {
                 Person pAux = this.hijos.getPerson(i);
                 if (pAux.hijos != null) {

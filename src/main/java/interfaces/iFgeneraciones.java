@@ -6,13 +6,10 @@ import com.mycompany.arbolgot.Hash;
 import com.mycompany.arbolgot.HashTable;
 import com.mycompany.arbolgot.List;
 import com.mycompany.arbolgot.Person;
-import static interfaces.Menu.ht;
-import static interfaces.Menu.persons;
-import javax.swing.DefaultComboBoxModel;
+import static interfaces.IFbuscarNombre.ht;
+import static interfaces.IFbuscarNombre.persons;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.graphstream.graph.Graph;
-import org.graphstream.graph.Node;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -22,24 +19,29 @@ import org.graphstream.graph.Node;
  *
  * @author Nathaly
  */
-public class IFbuscarNombre extends javax.swing.JInternalFrame {
+public class iFgeneraciones extends javax.swing.JInternalFrame {
 
     static List persons;
     static HashTable ht;
     String nombre;
+    int num;
 
     /**
-     * Creates new form IFbuscarNombre
+     * Creates new form IFgeneracion
      */
-    public IFbuscarNombre(List L) {
+    public iFgeneraciones(List L) {
         initComponents();
         this.setSize(400, 300);
-        this.setTitle("Buscar");
+        this.setTitle("Generaciones");
         this.persons = L;
         this.nombre = "";
+        this.num=0;
+
     }
 
-
+    public void setPersons(List persons) {
+        this.persons = persons;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,10 +54,9 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jC_nombres = new javax.swing.JComboBox<>();
-        jB_cargarNombres = new javax.swing.JButton();
         jB_buscar = new javax.swing.JButton();
         jB_cargarNombres1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -63,22 +64,7 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("buscar nombre");
-
-        jC_nombres.setEditable(true);
-        jC_nombres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        jC_nombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jC_nombresActionPerformed(evt);
-            }
-        });
-
-        jB_cargarNombres.setText("cargar ");
-        jB_cargarNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_cargarNombresActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("generaciones");
 
         jB_buscar.setText("buscar");
         jB_buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,43 +80,48 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jB_cargarNombres1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jB_cargarNombres)
-                            .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jB_cargarNombres1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(96, 96, 96)
+                        .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jB_cargarNombres))
-                    .addComponent(jB_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addComponent(jB_cargarNombres1)
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel1)
+                        .addGap(55, 55, 55)
+                        .addComponent(jB_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jB_cargarNombres1)))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 410, 310));
@@ -138,34 +129,15 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jC_nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_nombresActionPerformed
-
-
-    }//GEN-LAST:event_jC_nombresActionPerformed
-
-    private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
-        System.out.println(nombre);
-        jC_nombres.removeAllItems();
-        Person pAux = persons.getpFirst();
-        while (pAux != null) {
-            if (pAux.getName().contains(nombre)) {
-
-                jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
-
-            }
-            pAux = pAux.getNext();
-        }
-
-
-    }//GEN-LAST:event_jB_cargarNombresActionPerformed
-
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
 
-        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
-
+        nombre = JOptionPane.showInputDialog(this, "Escribe el numero de generacion");
+        num = Integer.parseInt(nombre);
+        jTextField1.setText(nombre);
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
+
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
 
@@ -177,19 +149,11 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         clicks.setHt(ht);
         clicks.Clicks1();
 
-        Object h = jC_nombres.getSelectedItem();
-        String a = h.toString();
-        String nums = a.replaceAll("[^0-9]", "");
-        System.out.println(nums);
+        
 
-        Hash x = ht.serchHashTable(Integer.parseInt(nums));
-        Person persona = x.getData();
-
-        Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
-
+       
         List descendants = new List();
-        descendants = persona.getDesenders(descendants);
+        descendants = persons.getpFirst().getGeneration(num, descendants);
 
         for (int i = 1; i <= persons.getlen(); i++) {
             Person aux = persons.getPerson(i);
@@ -198,22 +162,25 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
         }
         for (int i = 1; i <= descendants.getlen(); i++) {
+            
             Person aux = descendants.getPerson(i);
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
         }
 
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_buscar;
-    private javax.swing.JButton jB_cargarNombres;
     private javax.swing.JButton jB_cargarNombres1;
-    private javax.swing.JComboBox<String> jC_nombres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
 }

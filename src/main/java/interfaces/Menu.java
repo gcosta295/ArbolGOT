@@ -53,6 +53,9 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        B_generacion3 = new javax.swing.JButton();
+        B_antepasados1 = new javax.swing.JButton();
+        B_generacion4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         B_arbol = new javax.swing.JButton();
         B_antepasados = new javax.swing.JButton();
@@ -61,6 +64,35 @@ public class Menu extends javax.swing.JFrame {
         B_cambiarJSON = new javax.swing.JButton();
         jDesktopPane_menu = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
+        B_generacion1 = new javax.swing.JButton();
+        B_generacion2 = new javax.swing.JButton();
+
+        B_generacion3.setBackground(java.awt.Color.lightGray);
+        B_generacion3.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        B_generacion3.setText("Generación");
+        B_generacion3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_generacion3ActionPerformed(evt);
+            }
+        });
+
+        B_antepasados1.setBackground(java.awt.Color.lightGray);
+        B_antepasados1.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        B_antepasados1.setText("Antepasados");
+        B_antepasados1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_antepasados1ActionPerformed(evt);
+            }
+        });
+
+        B_generacion4.setBackground(java.awt.Color.lightGray);
+        B_generacion4.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        B_generacion4.setText("Generación");
+        B_generacion4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_generacion4ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,7 +146,7 @@ public class Menu extends javax.swing.JFrame {
                 B_cambiarJSONActionPerformed(evt);
             }
         });
-        jPanel1.add(B_cambiarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 150, 50));
+        jPanel1.add(B_cambiarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 150, 50));
 
         jDesktopPane_menu.setBackground(java.awt.Color.lightGray);
 
@@ -134,6 +166,26 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mapagotbla.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(800, 450));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 490));
+
+        B_generacion1.setBackground(java.awt.Color.lightGray);
+        B_generacion1.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        B_generacion1.setText("Generación");
+        B_generacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_generacion1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(B_generacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 150, 50));
+
+        B_generacion2.setBackground(java.awt.Color.lightGray);
+        B_generacion2.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        B_generacion2.setText("Generación");
+        B_generacion2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_generacion2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(B_generacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 150, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,11 +290,31 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_generacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacionActionPerformed
 
-        IFgeneracion interGeneracion = new IFgeneracion(persons);
+        iFgeneraciones interGeneracion = new iFgeneraciones(persons);
         jDesktopPane_menu.add(interGeneracion);
         interGeneracion.setVisible(true);
 
     }//GEN-LAST:event_B_generacionActionPerformed
+
+    private void B_generacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacion1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_generacion1ActionPerformed
+
+    private void B_generacion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacion2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_generacion2ActionPerformed
+
+    private void B_generacion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacion3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_generacion3ActionPerformed
+
+    private void B_antepasados1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_antepasados1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_antepasados1ActionPerformed
+
+    private void B_generacion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacion4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_generacion4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,9 +353,14 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_antepasados;
+    private javax.swing.JButton B_antepasados1;
     private javax.swing.JButton B_arbol;
     private javax.swing.JButton B_cambiarJSON;
     private javax.swing.JButton B_generacion;
+    private javax.swing.JButton B_generacion1;
+    private javax.swing.JButton B_generacion2;
+    private javax.swing.JButton B_generacion3;
+    private javax.swing.JButton B_generacion4;
     private javax.swing.JButton B_nombre;
     private javax.swing.JDesktopPane jDesktopPane_menu;
     private javax.swing.JLabel jLabel1;
