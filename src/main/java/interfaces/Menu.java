@@ -218,12 +218,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_nombreActionPerformed
 
-        IFbuscarNombre interNombre = new IFbuscarNombre(persons);
-        for (int i = 1; i <= persons.getlen(); i++) {
-            System.out.println(persons.getPerson(i).getName());
+        if (persons != null) {
+            IFbuscarNombre interNombre = new IFbuscarNombre(persons);
+            jDesktopPane_menu.add(interNombre);
+            interNombre.setVisible(true);
         }
-        jDesktopPane_menu.add(interNombre);
-        interNombre.setVisible(true);
 
 
     }//GEN-LAST:event_B_nombreActionPerformed

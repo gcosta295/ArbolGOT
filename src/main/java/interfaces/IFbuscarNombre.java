@@ -165,42 +165,49 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
 
         nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
+        if (persons.getNamedPerson(nombre) == null) {
+            nombre = "";
+            JOptionPane.showMessageDialog(null, "\nesta persona no se encuentra en el arbol",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
-        Arbol arbol = new Arbol();
-        arbol.Graph(persons);
+        if (nombre != "") {
 
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.setPersons(persons);
-        ht = arbol.getHashTable();
-        clicks.setHt(ht);
-        clicks.Clicks1();
+            Arbol arbol = new Arbol();
+            arbol.Graph(persons);
 
-        Object h = jC_nombres.getSelectedItem();
-        String a = h.toString();
-        String nums = a.replaceAll("[^0-9]", "");
-        System.out.println(nums);
+            Clicks clicks = new Clicks();
+            clicks.setGraph(arbol.getGraph());
+            clicks.setViewer(arbol.getViewer());
+            clicks.setPersons(persons);
+            ht = arbol.getHashTable();
+            clicks.setHt(ht);
+            clicks.Clicks1();
 
-        Hash x = ht.serchHashTable(Integer.parseInt(nums));
-        Person persona = x.getData();
+            Object h = jC_nombres.getSelectedItem();
+            String a = h.toString();
+            String nums = a.replaceAll("[^0-9]", "");
+            System.out.println(nums);
 
-        Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "hover");
-        
-        List descendants = new List();
-        descendants = persona.getDesenders(descendants);
+            Hash x = ht.serchHashTable(Integer.parseInt(nums));
+            Person persona = x.getData();
 
-        for (int i = 1; i <= descendants.getlen(); i++) {
-            Person aux = descendants.getPerson(i);
-            System.out.println(aux.getName());
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "hover");
+            Graph grafo = arbol.getGraph();
+            arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "hover");
+
+            List descendants = new List();
+            descendants = persona.getDesenders(descendants);
+
+            for (int i = 1; i <= descendants.getlen(); i++) {
+                Person aux = descendants.getPerson(i);
+                System.out.println(aux.getName());
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "hover");
+            }
         }
 
-        
 
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
 
