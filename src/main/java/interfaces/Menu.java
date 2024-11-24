@@ -2,6 +2,7 @@ package interfaces;
 
 import com.mycompany.arbolgot.Arbol;
 import com.mycompany.arbolgot.Clicks;
+import com.mycompany.arbolgot.HashTable;
 import com.mycompany.arbolgot.List;
 import com.mycompany.arbolgot.ReadJSON;
 
@@ -28,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
      */
     ReadJSON M;
     static List persons;
+    static HashTable ht;
 
     public Menu() {
 
@@ -42,7 +44,6 @@ public class Menu extends javax.swing.JFrame {
         this.persons = persons;
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,11 +150,11 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_cambiarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_cambiarJSONActionPerformed
-
+        System.setProperty("org.graphstream.ui", "swing");
         M.abrirArchivo();
         persons = M.Parse();
         persons = M.Arbol(persons);
-        
+
         M.arreglarHijos(persons);
 //        System.out.println(persons.getPerson(1).getName());
 //        System.setProperty("org.graphstream.ui", "swing");
@@ -165,17 +166,7 @@ public class Menu extends javax.swing.JFrame {
             String pAux = persons.getPerson(i).getName();
             System.out.println(pAux);
         }
-//        Clicks clicks = new Clicks();
-//        clicks.setGraph(arbol.getGraph());
-//        clicks.setViewer(arbol.getViewer());
-//        clicks.Clicks1();
 
-
-//        Clicks clicks = new Clicks();
-//        clicks.setGraph(arbol.getGraph());
-//        clicks.setViewer(arbol.getViewer());
-//        clicks.setPersons(persons);
-//        clicks.Clicks1();
 
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
@@ -184,16 +175,21 @@ public class Menu extends javax.swing.JFrame {
 //        IFmostrarArbol interArbol = new IFmostrarArbol();
 //        jDesktopPane_menu.add(interArbol);
 //        interArbol.setVisible(true);
-
         System.setProperty("org.graphstream.ui", "swing");
         Arbol arbol = new Arbol();
         arbol.Graph(persons);
-        
+
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
         clicks.setPersons(persons);
+        ht = arbol.getHashTable();
+        clicks.setHt(arbol.getHashTable());
+//        arbol.getGraph().getNode("10").setAttribute("ui.class", "hover");
         clicks.Clicks1();
+        
+        
+        
 
     }//GEN-LAST:event_B_arbolActionPerformed
 
@@ -202,7 +198,7 @@ public class Menu extends javax.swing.JFrame {
         IFbuscarNombre interNombre = new IFbuscarNombre(persons);
         jDesktopPane_menu.add(interNombre);
         interNombre.setVisible(true);
-        
+
 
     }//GEN-LAST:event_B_nombreActionPerformed
 
