@@ -299,25 +299,53 @@ public class Person {
     }
 
     /**
-     * retorna los antecesores masculinos de la rama familiar
+     * retorna los antecesores del familiar indicado
      *
      * @author astv06
      * @param n
      * @param l
      * @return l
      */
-    public List getAnsesters(int n, List l) {
-        if (n >= 0) {
-            l.addPerson(this);
-            if (this.pFather != null) {
-                Person pAux = this.pFather;
-                n -= 1;
-                pAux.getAnsesters(n, l);
+    public List getAnsesters (List l){
+        if (this.pFather != null){
+            this.pFather.getAnsesters(l);
+        }
+        if (this.getHijos()!= null){
+            for (int i = 1; i <= this.getHijos().getlen(); i++) {
+                Person pAux = this.getHijos().getPerson(i);
+                if (this.getHijos().pInList(pAux)==false){
+                    l.addPerson(pAux);
+                }
             }
+        }
+        if (l.pInList(this)){
+            l.addPerson(this);
         }
         return l;
     }
 
+    /**
+     * retorna los decendientes del familiar indicado
+     *
+     * @author astv06
+     * @param n
+     * @param l
+     * @return l
+     */
+    public List getDesenders (List l){
+        if (this.getHijos()!= null){
+            for (int i = 1; i <= this.getHijos().getlen(); i++) {
+                Person pAux = this.getHijos().getPerson(i);
+                pAux.getDesenders(l);
+            }
+        }
+        if (l.pInList(this)==false){
+                    l.addPerson(this);
+                }
+        return l;
+    }
+    
+    
     public String getAllInfo(Person p) {
         String x;
         String n;

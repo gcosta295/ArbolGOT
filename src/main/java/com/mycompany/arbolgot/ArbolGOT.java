@@ -49,10 +49,5 @@ public class ArbolGOT {
         clicks.setPersons(persons);
         Menu m = new Menu();
         clicks.Clicks1();
-    
-                
-        
-        
-     
     }
 }
