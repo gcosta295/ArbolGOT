@@ -105,7 +105,12 @@ public class Clicks implements ViewerListener {
     
     public void buttonReleased(String id) {
         Node nx = graph.getNode(id);
-        nx.removeAttribute("ui.class");
+        if (nx.hasAttribute("Thruth?")){
+            nx.setAttribute("ui.class", "shown");
+        }else{
+             nx.removeAttribute("ui.class");
+        }
+       
     }
     
     @Override
@@ -117,6 +122,9 @@ public class Clicks implements ViewerListener {
     
     public void mouseLeft(String id) {
              Node nx = graph.getNode(id);
-        nx.removeAttribute("ui.class");
-    }
+        if (nx.hasAttribute("Thruth?")){
+            nx.setAttribute("ui.class", "shown");
+        }else{
+             nx.removeAttribute("ui.class");
+        }    }
 }

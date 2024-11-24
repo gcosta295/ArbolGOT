@@ -1,16 +1,20 @@
 package interfaces;
 
+import com.mycompany.arbolgot.Arbol;
+import com.mycompany.arbolgot.Clicks;
+import com.mycompany.arbolgot.Hash;
+import com.mycompany.arbolgot.HashTable;
 import com.mycompany.arbolgot.List;
+import com.mycompany.arbolgot.Person;
+import static interfaces.IFbuscarNombre.ht;
 import static interfaces.IFbuscarNombre.persons;
 import javax.swing.JOptionPane;
-
-
+import org.graphstream.graph.Graph;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-
 /**
  *
  * @author Nathaly
@@ -18,21 +22,24 @@ import javax.swing.JOptionPane;
 public class IFantepasados extends javax.swing.JInternalFrame {
 
     static List persons;
-    
+    static HashTable ht;
+    String nombre;
+
     /**
      * Creates new form IFantepasados
      */
     public IFantepasados(List L) {
         initComponents();
-        this.setSize(400,300);
+        this.setSize(400, 300);
         this.setTitle("Antepasados");
         this.persons = L;
+        this.nombre = "";
     }
 
     public void setPersons(List persons) {
         this.persons = persons;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,11 +49,28 @@ public class IFantepasados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jB_cargarNombres1 = new javax.swing.JButton();
+        jB_cargarNombres2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jC_nombres = new javax.swing.JComboBox<>();
         jB_cargarNombres = new javax.swing.JButton();
         jB_buscar = new javax.swing.JButton();
+        ver = new javax.swing.JButton();
+
+        jB_cargarNombres1.setText("cargar");
+        jB_cargarNombres1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_cargarNombres1ActionPerformed(evt);
+            }
+        });
+
+        jB_cargarNombres2.setText("cargar");
+        jB_cargarNombres2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_cargarNombres2ActionPerformed(evt);
+            }
+        });
 
         setClosable(true);
         setIconifiable(true);
@@ -70,6 +94,13 @@ public class IFantepasados extends javax.swing.JInternalFrame {
             }
         });
 
+        ver.setText("ver");
+        ver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,7 +114,8 @@ public class IFantepasados extends javax.swing.JInternalFrame {
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jB_cargarNombres)
-                            .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ver))
                         .addGap(53, 53, 53)
                         .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -94,13 +126,15 @@ public class IFantepasados extends javax.swing.JInternalFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jB_cargarNombres))
-                    .addComponent(jB_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
-                .addContainerGap(136, Short.MAX_VALUE))
+                    .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(ver)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 410, 310));
@@ -109,27 +143,85 @@ public class IFantepasados extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
-        
-        for (int i = 1; i < persons.getlen(); i++) {
-            String pAux = persons.getPerson(i).getName();
-            System.out.println(pAux);
-            jC_nombres.addItem(pAux);
-        
+
+        int y = 1;
+        System.out.println(nombre);
+        jC_nombres.removeAllItems();
+        Person pAux = persons.getpFirst();
+        while (pAux != null) {
+            if (pAux.getName().contains(nombre)) {
+
+                jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+
+            }
+            pAux = pAux.getNext();
         }
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-        
-        String nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona qu quieres buscar");
-        
+
+        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona qu quieres buscar");
+
     }//GEN-LAST:event_jB_buscarActionPerformed
+
+    private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
+
+    private void jB_cargarNombres2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_cargarNombres2ActionPerformed
+
+    private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
+        Arbol arbol = new Arbol();
+        arbol.Graph(persons);
+
+        Clicks clicks = new Clicks();
+        clicks.setGraph(arbol.getGraph());
+        clicks.setViewer(arbol.getViewer());
+        clicks.setPersons(persons);
+        ht = arbol.getHashTable();
+        clicks.setHt(ht);
+        clicks.Clicks1();
+
+        Object h = jC_nombres.getSelectedItem();
+        String a = h.toString();
+        String nums = a.replaceAll("[^0-9]", "");
+        System.out.println(nums);
+
+        Hash x = ht.serchHashTable(Integer.parseInt(nums));
+        Person persona = x.getData();
+
+        Graph grafo = arbol.getGraph();
+        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
+
+        List asc = new List();
+        asc = persona.getAnsesters(asc, persona.getIndex());
+
+        for (int i = 1; i <= persons.getlen(); i++) {
+            Person aux = persons.getPerson(i);
+
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+        }
+        
+        for (int i = 1; i <= asc.getlen(); i++) {
+            Person aux = asc.getPerson(i);
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_buscar;
     private javax.swing.JButton jB_cargarNombres;
+    private javax.swing.JButton jB_cargarNombres1;
+    private javax.swing.JButton jB_cargarNombres2;
     private javax.swing.JComboBox<String> jC_nombres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ver;
     // End of variables declaration//GEN-END:variables
 }

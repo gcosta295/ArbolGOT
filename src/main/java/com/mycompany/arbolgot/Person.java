@@ -306,19 +306,36 @@ public class Person {
      * @param l
      * @return l
      */
-    public List getAnsesters (List l){
-        if (this.pFather != null){
-            this.pFather.getAnsesters(l);
+    public List getAnsesters(List l, int index1) {
+        if (this.pFather != null) {
+            this.pFather.getAnsesters(l, index1);
+        } else {
+            if (this.index != index1 && this.hijos.indexInList(index1) == false) {
+                for (int i = 1; i <= this.hijos.getlen(); i++) {
+                    Person pAux = this.hijos.getPerson(i);
+                    System.out.println("");
+                    System.out.println(pAux.name);
+                    if (pAux.hijos != null && pAux.hijos.indexInList(index1)) {
+                            for (int j = 1; j <= pAux.getHijos().getlen(); j++) {
+                                Person pAux1 = pAux.getHijos().getPerson(j);
+                                System.out.println(pAux1.name);
+                                if (l.indexInList(pAux1.index) == false) {
+                                    l.addPerson(pAux1);
+                                }
+                        }
+                    }
+                }
+            }
         }
-        if (this.getHijos()!= null){
-            for (int i = 1; i <= this.getHijos().getlen(); i++) {
-                Person pAux = this.getHijos().getPerson(i);
-                if (this.getHijos().pInList(pAux)==false){
+        if (this.getHijos() != null) {
+            if (this.index != index1 && this.hijos.indexInList(index1) == false) {
+                for (int i = 1; i <= this.getHijos().getlen(); i++) {
+                    Person pAux = this.getHijos().getPerson(i);
                     l.addPerson(pAux);
                 }
             }
         }
-        if (l.pInList(this)){
+        if (l.indexInList(this.index) == false) {
             l.addPerson(this);
         }
         return l;

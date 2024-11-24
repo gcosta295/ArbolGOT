@@ -9,7 +9,6 @@ import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 
-
 //comment
 /**
  *
@@ -34,7 +33,7 @@ public class Arbol {
         this.graph = new MultiGraph("ArbolGOT");
         this.lNodes = new List();
         this.viewer = null;
-        this.HashTable=null;
+        this.HashTable = null;
 //     algo   
     }
 
@@ -47,11 +46,12 @@ public class Arbol {
     public MultiGraph getGraph() {
         return graph;
     }
-    
-    public void setViewer(){
+
+    public void setViewer() {
         viewer = graph.display();
     }
-    public Viewer getViewer(){
+
+    public Viewer getViewer() {
         return viewer;
     }
 
@@ -66,7 +66,7 @@ public class Arbol {
     public void Graph(List persons) {
         Viewer viewer = graph.display();
 //      
-        this.viewer=viewer;
+        this.viewer = viewer;
 //        
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
@@ -84,6 +84,10 @@ public class Arbol {
                 + "node.hover{\n"
                 + "fill-color: blue;\n"
                 + "size: 20px, 20px; \n"
+                + "}"
+                + "node.shown{\n"
+                + "fill-color: purple;\n"
+                + "size: 25px, 25px; \n"
                 + "}");
 //        graph.setAttribute("ui.stylesheet", "graph { fill-color: pink; }");
         this.HashTable = new HashTable();
@@ -139,8 +143,6 @@ public class Arbol {
     public HashTable getHashTable() {
         return HashTable;
     }
-    
-    
 
     public HashTable createHash(HashTable ht, Person o, int index) {
         Hash hAux = new Hash();
