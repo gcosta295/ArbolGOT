@@ -5,6 +5,7 @@
 package com.mycompany.arbolgot;
 
 import interfaces.PersonaSquare;
+import javax.swing.JFrame;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.ui.view.Viewer;
@@ -89,11 +90,14 @@ public class Clicks implements ViewerListener {
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
+//        System.out.println(id);
         int idd = Integer.parseInt(id);
-        System.out.println(idd);
+//        System.out.println(idd);
+        
+        
+//        Person persona = persons.getPerson(idd);
         Hash h = ht.serchHashTable(idd);
         Person persona = h.getData();
-        System.out.println(persona.getIndex());
         PersonaSquare t = new PersonaSquare();
         t.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         t.setPer(persona);

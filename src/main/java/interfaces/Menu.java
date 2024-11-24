@@ -151,9 +151,24 @@ public class Menu extends javax.swing.JFrame {
 
     private void B_cambiarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_cambiarJSONActionPerformed
         System.setProperty("org.graphstream.ui", "swing");
-        M.abrirArchivo();
-        persons = M.Parse();
-        persons = M.Arbol(persons);
+        persons = new List ();
+        while (persons.getlen() == 0) {
+            try {
+                M.abrirArchivo();
+                persons = M.Parse();
+                persons = M.Arbol(persons);
+            }
+            catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"\nseleccione nuevamente su archivo",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        }
+//
+//        M.abrirArchivo();
+//        persons = M.Parse();
+//        persons = M.Arbol(persons);
 
         M.arreglarHijos(persons);
 //        System.out.println(persons.getPerson(1).getName());
@@ -164,7 +179,6 @@ public class Menu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Se ha cargado el JSON");
         for (int i = 1; i < persons.getlen(); i++) {
             String pAux = persons.getPerson(i).getName();
-            System.out.println(pAux);
         }
 
 
@@ -183,7 +197,16 @@ public class Menu extends javax.swing.JFrame {
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
         clicks.setPersons(persons);
-        ht = arbol.getHashTable();
+//        for (int i = 1; i <= persons.getlen(); i++) {
+//            System.out.println(persons.getPerson(i).getName());
+//        }
+//        System.out.println("");
+//        System.out.println("");
+//        System.out.println("");
+//        ht = arbol.getHashTable();
+//        for (int i = 1; i < ht.getLen(); i++) {
+//            System.out.println(ht.serchHashTable2(i).getData().getName());
+//        }
         clicks.setHt(arbol.getHashTable());
 //        arbol.getGraph().getNode("10").setAttribute("ui.class", "hover");
         clicks.Clicks1();
@@ -196,6 +219,9 @@ public class Menu extends javax.swing.JFrame {
     private void B_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_nombreActionPerformed
 
         IFbuscarNombre interNombre = new IFbuscarNombre(persons);
+        for (int i = 1; i <= persons.getlen(); i++) {
+            System.out.println(persons.getPerson(i).getName());
+        }
         jDesktopPane_menu.add(interNombre);
         interNombre.setVisible(true);
 

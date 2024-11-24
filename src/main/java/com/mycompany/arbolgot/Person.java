@@ -335,7 +335,8 @@ public class Person {
     public List getDesenders (List l){
         if (this.getHijos()!= null){
             for (int i = 1; i <= this.getHijos().getlen(); i++) {
-                Person pAux = this.getHijos().getPerson(i);
+                Person pAux = this.getHijos().getPerson(i); 
+                l.addPerson(pAux);
                 pAux.getDesenders(l);
             }
         }

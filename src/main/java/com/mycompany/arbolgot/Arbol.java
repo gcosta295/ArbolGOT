@@ -122,7 +122,6 @@ public class Arbol {
                         Node nx1;
                         nx1 = graph.addNode(Integer.toString(hAux.getIndex()));
                         nx1.setAttribute("ui.label", hAux.getName());
-
                         this.createHash(HashTable, hAux, hAux.getIndex());
                         String y = Integer.toString(pAux.getIndex()) + Integer.toString(hAux.getIndex());
                         graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()), true);
@@ -143,11 +142,12 @@ public class Arbol {
     
     
 
-    public void createHash(HashTable ht, Person o, int index) {
+    public HashTable createHash(HashTable ht, Person o, int index) {
         Hash hAux = new Hash();
         hAux.setData(o);
         hAux.setKey(index);
         ht.addHash(hAux);
+        return ht;
     }
 
 }
