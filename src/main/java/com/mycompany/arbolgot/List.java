@@ -202,20 +202,6 @@ public class List {
         return l;
     }
 
-    public List getNamedPersonList(String pName) {
-        List l = new List();
-        Person pAux = pFirst;
-        while (pAux != null) {
-            if (pAux.getName().contains(pName)) {
-                l.addPerson(pAux);
-                System.out.println(pAux.getName()+" "+pAux.getNumber());
-                
-            }
-            pAux = pAux.getNext();
-        }
-        return l;
-    }
-
     /**
      * en base al apodo de la persona te encuentra la persona
      *
