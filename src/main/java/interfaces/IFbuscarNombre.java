@@ -26,6 +26,7 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
 
     static List persons;
     static HashTable ht;
+    String nombre;
 
     /**
      * Creates new form IFbuscarNombre
@@ -35,6 +36,7 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         this.setSize(400, 300);
         this.setTitle("Buscar");
         this.persons = L;
+        this.nombre = "";
     }
 
     public void setPersons(List persons) {
@@ -139,63 +141,67 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jC_nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_nombresActionPerformed
-        
-        
 
 
     }//GEN-LAST:event_jC_nombresActionPerformed
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
         int y = 1;
-        for (int i = 1; i < persons.getlen(); i++) {
-            String pAux = persons.getPerson(i).getName();
-            System.out.println(pAux);
-            jC_nombres.addItem(y + pAux + " " +persons.getPerson(i).getIndex());
-            y+=1;
-
+        System.out.println(nombre);
+        jC_nombres.removeAllItems();
+        Person pAux = persons.getpFirst();
+        while (pAux != null) {
+            if (pAux.getName().contains(nombre)) {
+                
+                jC_nombres.addItem(pAux.getName()+ " " + pAux.getNumber()+ " "+ pAux.getIndex());
+                
+                        
+            }
+            pAux = pAux.getNext();
         }
+
+//            String pAux = l.getPerson(i).getName();
+        System.out.println(pAux);
+        y += 1;
+
 
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
 
-        String nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
+        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
 
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
-       Arbol arbol = new Arbol();
+        Arbol arbol = new Arbol();
         arbol.Graph(persons);
 
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
         clicks.setPersons(persons);
-        ht=arbol.getHashTable();
+        ht = arbol.getHashTable();
         clicks.setHt(ht);
         clicks.Clicks1();
+
+        Object h = jC_nombres.getSelectedItem();
+        String a = h.toString();
+        String nums = a.replaceAll("[^0-9]", "");
+        System.out.println(nums);
         
-        int h = jC_nombres.getSelectedIndex() + 1 ;
-        System.out.println(h);
-        
-        Hash x = ht.serchHashTable(h);
+        Hash x = ht.serchHashTable(Integer.parseInt(nums));
         Person persona = x.getData();
-        
-        Graph grafo =arbol.getGraph();
-        
+
+        Graph grafo = arbol.getGraph();
+
 //        for (int i = 1; i < persona.getGeneration(5, persona).getlen(); i++) {
 //            String pAux = Integer.toString(persons.getPerson(i).getIndex());
 //            System.out.println(pAux);
 //            grafo.getNode(pAux).setAttribute("ui.hide");
 //        }
-        
-        
-       
-        
-        
-        
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).removeAttribute("ui.hide");
-        
+        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class","hover");
+
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
 
 
