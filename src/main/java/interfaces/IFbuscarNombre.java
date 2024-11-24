@@ -189,18 +189,23 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         Person persona = x.getData();
 
         Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "hover");
-        
+        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
+
         List descendants = new List();
         descendants = persona.getDesenders(descendants);
 
+        for (int i = 1; i <= persons.getlen(); i++) {
+            Person aux = persons.getPerson(i);
+            
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+        }
         for (int i = 1; i <= descendants.getlen(); i++) {
             Person aux = descendants.getPerson(i);
-            System.out.println(aux.getName());
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "hover");
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
+            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
         }
 
-        
 
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
 
