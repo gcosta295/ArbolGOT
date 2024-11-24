@@ -5,18 +5,11 @@
 package com.mycompany.arbolgot;
 
 import interfaces.PersonaSquare;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
-import org.jfree.layout.CenterLayout;
 
 public class Clicks implements ViewerListener {
 //comment
