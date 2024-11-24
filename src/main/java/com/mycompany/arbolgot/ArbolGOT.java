@@ -7,7 +7,14 @@ package com.mycompany.arbolgot;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
+import interfaces.Menu;
+import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import org.jfree.layout.CenterLayout;
+///comment
 /**
  *
  * @author gabri
@@ -39,6 +46,13 @@ public class ArbolGOT {
         Clicks clicks = new Clicks();
         clicks.setGraph(arbol.getGraph());
         clicks.setViewer(arbol.getViewer());
+        clicks.setPersons(persons);
+        Menu m = new Menu();
         clicks.Clicks1();
+    
+                
+        
+        
+     
     }
 }

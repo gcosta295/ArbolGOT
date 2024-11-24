@@ -4,6 +4,7 @@
  */
 package com.mycompany.arbolgot;
 //comment
+
 /**
  *
  * @author astv06
@@ -86,7 +87,7 @@ public class List {
     public boolean nameInList(String pName) {
         Person sAux = pFirst;
         while (sAux != null) {
-       
+
             if (pName != null) {
                 if (sAux.getName().contains(pName)) {
 
@@ -201,6 +202,20 @@ public class List {
         return l;
     }
 
+    public List getNamedPersonList(String pName) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pName)) {
+                l.addPerson(pAux);
+                System.out.println(pAux.getName()+" "+pAux.getNumber());
+                
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
+    }
+
     /**
      * en base al apodo de la persona te encuentra la persona
      *
@@ -220,7 +235,7 @@ public class List {
         }
         return null;
     }
-    
+
     /**
      * en base al titulo de la persona te encuentra la persona
      *
@@ -231,7 +246,7 @@ public class List {
     public Person getTitlePerson(String pTitle) {
         Person pAux = pFirst;
         while (pAux != null) {
-            if (pAux.getTitulo()!= null) {
+            if (pAux.getTitulo() != null) {
                 if (pAux.getTitulo().contains(pTitle)) {
                     return pAux;
                 }
