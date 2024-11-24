@@ -39,9 +39,7 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         this.nombre = "";
     }
 
-    public void setPersons(List persons) {
-        this.persons = persons;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,7 +144,9 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jC_nombresActionPerformed
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
+
         int y = 1;
+
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
         while (pAux != null) {
