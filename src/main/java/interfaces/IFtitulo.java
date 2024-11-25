@@ -33,9 +33,21 @@ public class IFtitulo extends javax.swing.JInternalFrame {
         this.setSize(400, 300);
         this.setTitle("Titulos");
         this.persons = L;
+         jC_nombres.removeAllItems();
+        Person pAux = persons.getpFirst();
 
+        List titles = new List();
+
+        while (pAux != null) {
+            if (pAux.getTitulo() != null) {
+                if (titles.titleInList(pAux.getTitulo()) == false) {
+                    jC_nombres.addItem(pAux.getTitulo());
+                    titles.addPerson(pAux);
+                }
+            }
+            pAux = pAux.getNext();
+        }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +61,6 @@ public class IFtitulo extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jC_nombres = new javax.swing.JComboBox<>();
-        jB_cargarNombres = new javax.swing.JButton();
         jB_cargarNombres1 = new javax.swing.JButton();
 
         setClosable(true);
@@ -58,14 +69,7 @@ public class IFtitulo extends javax.swing.JInternalFrame {
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("generaciones");
-
-        jB_cargarNombres.setText("cargar");
-        jB_cargarNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_cargarNombresActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Titulos");
 
         jB_cargarNombres1.setText("ver");
         jB_cargarNombres1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +90,6 @@ public class IFtitulo extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jB_cargarNombres)
                             .addComponent(jB_cargarNombres1)
                             .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(66, Short.MAX_VALUE))
@@ -98,9 +101,7 @@ public class IFtitulo extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(55, 55, 55)
                 .addComponent(jC_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jB_cargarNombres)
-                .addGap(18, 18, 18)
+                .addGap(59, 59, 59)
                 .addComponent(jB_cargarNombres1)
                 .addContainerGap(90, Short.MAX_VALUE))
         );
@@ -109,27 +110,6 @@ public class IFtitulo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
-
-        jC_nombres.removeAllItems();
-        Person pAux = persons.getpFirst();
-        
-        List titles = new List();
-        
-        while (pAux != null) {
-            if (pAux.getTitulo()!=null){
-                
-                 System.out.println(pAux.getName());
-                    jC_nombres.addItem(pAux.getTitulo());
-
-            }
-            
-
-            pAux = pAux.getNext();
-        }
-
-    }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
 
@@ -146,26 +126,20 @@ public class IFtitulo extends javax.swing.JInternalFrame {
 
         Object h = jC_nombres.getSelectedItem();
         String a = h.toString();
-        String nums = a.replaceAll("[^0-9]", "");
-        System.out.println(nums);
-
-        Hash x = ht.serchHashTable(Integer.parseInt(nums));
-        Person persona = x.getData();
-
-        Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
-
-        List descendants = new List();
-        descendants = persona.getDesenders(descendants);
-
+        
+        List gentetitles = new List();
+        
+        gentetitles=persons.getListOfTitlePerson(a);
+        
+        System.out.println(gentetitles.getlen());
         for (int i = 1; i <= persons.getlen(); i++) {
             Person aux = persons.getPerson(i);
-            
+
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
         }
-        for (int i = 1; i <= descendants.getlen(); i++) {
-            Person aux = descendants.getPerson(i);
+        for (int i = 1; i <= gentetitles.getlen(); i++) {
+            Person aux = gentetitles.getPerson(i);
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
             arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
         }
@@ -175,7 +149,6 @@ public class IFtitulo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_cargarNombres;
     private javax.swing.JButton jB_cargarNombres1;
     private javax.swing.JComboBox<String> jC_nombres;
     private javax.swing.JLabel jLabel1;

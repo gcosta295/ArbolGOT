@@ -87,12 +87,34 @@ public class List {
     public boolean nameInList(String pName) {
         Person sAux = pFirst;
         while (sAux != null) {
-
             if (pName != null) {
                 if (sAux.getName().contains(pName)) {
 
                     return true;
                 }
+            }
+
+            sAux = sAux.getNext();
+        }
+        return false;
+    }
+
+    /**
+     * Se emplea para confirmar la existencia de una persona mediante su titulo
+     *
+     * @author gcosta
+     * @param pName
+     * @return boolean
+     */
+    public boolean titleInList(String pTitle) {
+        Person sAux = pFirst;
+        while (sAux != null) {
+            if (sAux.getTitulo() != null) {
+                if (sAux.getTitulo().equals(pTitle)) {
+                    return true;
+                }
+//                    System.out.println("A   "+ sAux.getTitulo());
+
             }
 
             sAux = sAux.getNext();
@@ -181,10 +203,10 @@ public class List {
         }
         return null;
     }
-    
+
     /**
-     * en base al nombre de la persona retorna una lista 
-     * de personas que cumplen con ese nombre
+     * en base al nombre de la persona retorna una lista de personas que cumplen
+     * con ese nombre
      *
      * @author astv06
      * @param pName
@@ -208,8 +230,8 @@ public class List {
         while (pAux != null) {
             if (pAux.getName().contains(pName)) {
                 l.addPerson(pAux);
-                System.out.println(pAux.getName()+" "+pAux.getNumber());
-                
+                System.out.println(pAux.getName() + " " + pAux.getNumber());
+
             }
             pAux = pAux.getNext();
         }
@@ -255,10 +277,10 @@ public class List {
         }
         return null;
     }
-    
+
     /**
-     * en base al titulo de la persona retorna una lista 
-     * de personas que cumplen con ese titulo
+     * en base al titulo de la persona retorna una lista de personas que cumplen
+     * con ese titulo
      *
      * @author astv06
      * @param pTitle
@@ -268,9 +290,12 @@ public class List {
         List l = new List();
         Person pAux = pFirst;
         while (pAux != null) {
-            if (pAux.getName().contains(pTitle)) {
-                l.addPerson(pAux);
+            if (pAux.getTitulo() != null) {
+                if (pAux.getTitulo().contains(pTitle)) {
+                    l.addPerson(pAux);
+                }
             }
+
             pAux = pAux.getNext();
         }
         return l;
