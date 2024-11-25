@@ -103,7 +103,7 @@ public class IFantepasados extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,6 +161,12 @@ public class IFantepasados extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(231, 136, 32));
 
+        jC_nombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jC_nombresActionPerformed(evt);
+            }
+        });
+
         jB_cargarNombres.setBackground(new java.awt.Color(255, 208, 121));
         jB_cargarNombres.setFont(new java.awt.Font("SWComp", 0, 12)); // NOI18N
         jB_cargarNombres.setText("cargar");
@@ -205,7 +211,7 @@ public class IFantepasados extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,6 +390,10 @@ public class IFantepasados extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_verActionPerformed
+
+    private void jC_nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_nombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jC_nombresActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

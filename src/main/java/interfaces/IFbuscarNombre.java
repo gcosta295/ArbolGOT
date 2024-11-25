@@ -225,20 +225,15 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
 
         int y = 1;
-
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
         while (pAux != null) {
             if (pAux.getName().contains(nombre)) {
-
                 if (pAux.getNumber() != null) {
                     jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
-
                 } else {
                     jC_nombres.addItem(pAux.getName() + " " + pAux.getIndex());
-
                 }
-
             }
             pAux = pAux.getNext();
         }
@@ -258,6 +253,9 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
+        Object h = jC_nombres.getSelectedItem();
+            String a = h.toString();
+            nombre=a;
         if (nombre != "") {
 
             Arbol arbol = new Arbol();
@@ -271,8 +269,8 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
             clicks.setHt(ht);
             clicks.Clicks1();
 
-            Object h = jC_nombres.getSelectedItem();
-            String a = h.toString();
+            h = jC_nombres.getSelectedItem();
+            a = h.toString();
             String nums = a.replaceAll("[^0-9]", "");
             Hash x = ht.serchHashTable(Integer.parseInt(nums));
             Person persona = x.getData();
