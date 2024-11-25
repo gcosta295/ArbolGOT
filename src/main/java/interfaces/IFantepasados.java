@@ -306,14 +306,16 @@ public class IFantepasados extends javax.swing.JInternalFrame {
         int y = 1;
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
-                   while (pAux != null) {
-            if (pAux.getName().contains(nombre)) {
-
+        while (pAux != null) {
+            if (pAux.getNumber() != null) {
                 jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+
+            } else {
+                jC_nombres.addItem(pAux.getName() + " " + pAux.getIndex());
 
             }
             pAux = pAux.getNext();
-        
+
         }
 
     }//GEN-LAST:event_jB_cargarNombresActionPerformed

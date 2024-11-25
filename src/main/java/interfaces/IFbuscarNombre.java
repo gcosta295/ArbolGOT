@@ -39,8 +39,6 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         this.nombre = "";
     }
 
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -233,7 +231,13 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
         while (pAux != null) {
             if (pAux.getName().contains(nombre)) {
 
-                jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+                if (pAux.getNumber() != null) {
+                    jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+
+                } else {
+                    jC_nombres.addItem(pAux.getName() + " " + pAux.getIndex());
+
+                }
 
             }
             pAux = pAux.getNext();
