@@ -10,7 +10,7 @@ import static interfaces.IFbuscarNombre.ht;
 import static interfaces.IFbuscarNombre.persons;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
-
+//c0mme
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template

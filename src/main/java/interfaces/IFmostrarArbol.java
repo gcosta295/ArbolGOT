@@ -12,7 +12,7 @@ package interfaces;
  * @author Nathaly
  */
 public class IFmostrarArbol extends javax.swing.JInternalFrame {
-
+//c
     /**
      * Creates new form IFmostrarArbol
      */
