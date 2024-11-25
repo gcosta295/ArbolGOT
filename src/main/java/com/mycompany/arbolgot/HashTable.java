@@ -19,14 +19,13 @@ public class HashTable {
         this.len = 0;
     }
 
-    public void setFirst() {
-        this.first = null;
-    }
-
-    public void setLast(Hash last) {
-        this.last = last;
-    }
-
+    /**
+     * agrega una nueva hash a la hashTable.
+     *
+     * @author astv06
+     *
+     * @param h
+     */     
     public void addHash (Hash h){
         if (this.len == 0){
             this.first = h;
@@ -40,6 +39,15 @@ public class HashTable {
         this.len+=1;
     }
     
+    /**
+     * retorna la hash que coincida en llave con
+     * la llave de entrada.
+     *
+     * @author astv06
+     *
+     * @param index
+     * @return hAux
+     */     
     public Hash serchHashTable (int index){
         Hash hAux = this.first;
         while (hAux != null){
@@ -53,25 +61,39 @@ public class HashTable {
         return null;
     }
     
-    public Hash serchHashTable2 (int index){
-        Hash hAux = this.first;
-        int count = 1;
-        while (hAux.getNext() != null){
-            if (count==index){
-                return hAux;
-            }
-            else{
-                hAux = hAux.getNext();
-            }
-            count += 1;
-        }
-        return null;
-    }
+//    public Hash serchHashTable2 (int index){
+//        Hash hAux = this.first;
+//        int count = 1;
+//        while (hAux.getNext() != null){
+//            if (count==index){
+//                return hAux;
+//            }
+//            else{
+//                hAux = hAux.getNext();
+//            }
+//            count += 1;
+//        }
+//        return null;
+//    }
 
+    /**
+     * retorna la longitud de la hashTable.
+     *
+     * @author astv06
+     *
+     * @return len
+     */     
     public int getLen() {
         return len;
     }
 
+    /**
+     * retorna el ultimo elemento de la hashTable.
+     *
+     * @author astv06
+     *
+     * @return last
+     */ 
     public Hash getLast() {
         return last;
     }
