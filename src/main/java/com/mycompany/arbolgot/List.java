@@ -4,6 +4,7 @@
  */
 package com.mycompany.arbolgot;
 //comment
+
 /**
  *
  * @author astv06
@@ -86,12 +87,34 @@ public class List {
     public boolean nameInList(String pName) {
         Person sAux = pFirst;
         while (sAux != null) {
-       
             if (pName != null) {
                 if (sAux.getName().contains(pName)) {
 
                     return true;
                 }
+            }
+
+            sAux = sAux.getNext();
+        }
+        return false;
+    }
+
+    /**
+     * Se emplea para confirmar la existencia de una persona mediante su titulo
+     *
+     * @author gcosta
+     * @param pName
+     * @return boolean
+     */
+    public boolean titleInList(String pTitle) {
+        Person sAux = pFirst;
+        while (sAux != null) {
+            if (sAux.getTitulo() != null) {
+                if (sAux.getTitulo().equals(pTitle)) {
+                    return true;
+                }
+//                    System.out.println("A   "+ sAux.getTitulo());
+
             }
 
             sAux = sAux.getNext();
@@ -182,6 +205,40 @@ public class List {
     }
 
     /**
+     * en base al nombre de la persona retorna una lista de personas que cumplen
+     * con ese nombre
+     *
+     * @author astv06
+     * @param pName
+     * @return l
+     */
+    public List getListOfNamedPerson(String pName) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pName)) {
+                l.addPerson(pAux);
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
+    }
+
+    public List getNamedPersonList(String pName) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getName().contains(pName)) {
+                l.addPerson(pAux);
+                System.out.println(pAux.getName() + " " + pAux.getNumber());
+
+            }
+            pAux = pAux.getNext();
+        }
+        return l;
+    }
+
+    /**
      * en base al apodo de la persona te encuentra la persona
      *
      * @author astv06
@@ -200,7 +257,7 @@ public class List {
         }
         return null;
     }
-    
+
     /**
      * en base al titulo de la persona te encuentra la persona
      *
@@ -211,7 +268,7 @@ public class List {
     public Person getTitlePerson(String pTitle) {
         Person pAux = pFirst;
         while (pAux != null) {
-            if (pAux.getTitulo()!= null) {
+            if (pAux.getTitulo() != null) {
                 if (pAux.getTitulo().contains(pTitle)) {
                     return pAux;
                 }
@@ -219,6 +276,29 @@ public class List {
             pAux = pAux.getNext();
         }
         return null;
+    }
+
+    /**
+     * en base al titulo de la persona retorna una lista de personas que cumplen
+     * con ese titulo
+     *
+     * @author astv06
+     * @param pTitle
+     * @return l
+     */
+    public List getListOfTitlePerson(String pTitle) {
+        List l = new List();
+        Person pAux = pFirst;
+        while (pAux != null) {
+            if (pAux.getTitulo() != null) {
+                if (pAux.getTitulo().contains(pTitle)) {
+                    l.addPerson(pAux);
+                }
+            }
+
+            pAux = pAux.getNext();
+        }
+        return l;
     }
 
     /**

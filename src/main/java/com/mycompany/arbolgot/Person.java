@@ -77,7 +77,6 @@ public class Person {
         this.setHijos(p.hijos);
         this.setNotes(p.notes);
         this.setFate(p.fate);
-        this.setNext(p.next);
         this.setIndex(p.index);
         this.pFather = p.pFather;
         this.setPMother(p.pMother);
@@ -281,7 +280,7 @@ public class Person {
      */
     public List getGeneration(int n, List l) {
         n -= 1;
-        if (n > 1) {
+        if (n > 0) {
             for (int i = 1; i <= this.hijos.getlen(); i++) {
                 Person pAux = this.hijos.getPerson(i);
                 if (pAux.hijos != null) {
@@ -299,25 +298,69 @@ public class Person {
     }
 
     /**
-     * retorna los antecesores masculinos de la rama familiar
+     * retorna los antecesores del familiar indicado
      *
      * @author astv06
      * @param n
      * @param l
      * @return l
      */
-    public List getAnsesters(int n, List l) {
-        if (n >= 0) {
-            l.addPerson(this);
-            if (this.pFather != null) {
-                Person pAux = this.pFather;
-                n -= 1;
-                pAux.getAnsesters(n, l);
+    public List getAnsesters(List l, int index1) {
+        if (this.pFather != null) {
+            this.pFather.getAnsesters(l, index1);
+        } else {
+            if (this.index != index1 && this.hijos.indexInList(index1) == false) {
+                for (int i = 1; i <= this.hijos.getlen(); i++) {
+                    Person pAux = this.hijos.getPerson(i);
+                    
+                    if (pAux.hijos != null && pAux.hijos.indexInList(index1)) {
+                            for (int j = 1; j <= pAux.getHijos().getlen(); j++) {
+                                Person pAux1 = pAux.getHijos().getPerson(j);
+                                if (l.indexInList(pAux1.index) == false) {
+                                    l.addPerson(pAux1);
+                                }
+                        }
+                    }
+                }
             }
+        }
+        if (this.getHijos() != null) {
+            if (this.index != index1 && this.hijos.indexInList(index1) == false) {
+                for (int i = 1; i <= this.getHijos().getlen(); i++) {
+                    Person pAux = this.getHijos().getPerson(i);
+                    l.addPerson(pAux);
+                }
+            }
+        }
+        if (l.indexInList(this.index) == false) {
+            l.addPerson(this);
         }
         return l;
     }
 
+    /**
+     * retorna los decendientes del familiar indicado
+     *
+     * @author astv06
+     * @param n
+     * @param l
+     * @return l
+     */
+    public List getDesenders (List l){
+        if (this.getHijos()!= null){
+            for (int i = 1; i <= this.getHijos().getlen(); i++) {
+                Person pAux = this.getHijos().getPerson(i); 
+                l.addPerson(pAux);
+                pAux.getDesenders(l);
+            }
+        }
+        if (l.pInList(this)==false){
+                    l.addPerson(this);
+                }
+        return l;
+    }
+    
+    
     public String getAllInfo(Person p) {
         String x;
         String n;

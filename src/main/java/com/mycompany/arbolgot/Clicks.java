@@ -5,18 +5,12 @@
 package com.mycompany.arbolgot;
 
 import interfaces.PersonaSquare;
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
-import org.jfree.layout.CenterLayout;
 
 public class Clicks implements ViewerListener {
 //comment
@@ -25,39 +19,32 @@ public class Clicks implements ViewerListener {
     Viewer viewer;
     List persons;
     Boolean f;
+    HashTable ht;
     protected boolean loop = true;
 
-//    public static void main(String args[]) {
-//        System.setProperty("org.graphstream.ui", "swing");
-//        Graph graph = new SingleGraph("Clicks");
-//        for (int i = 0; i < 10; i++) {
-//            Node n = graph.addNode(String.valueOf(i));
-//            n.setAttribute("ui.style", "shape: box;");
-//            n.setAttribute("ui.style", "size: 50px,30px;");
-//            n.setAttribute("ui.style", "fill-color: blue;");
-//        }
-//        new Clicks(graph);
-//    }
+
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
-    
+
     public void setViewer(Viewer viewer) {
         this.viewer = viewer;
     }
-    
+
     public void setPersons(List persons) {
         this.persons = persons;
     }
-    
+
+    public void setHt(HashTable ht){
+        this.ht=ht;
+    }
     public Clicks() {
         this.graph = null;
         this.viewer = null;
+        this.viewer = null;
         this.persons = null;
-        
-        
     }
-    
+
     public void Clicks1() {
         // We do as usual to display a graph. This
         // connect the graph outputs to the viewer.
@@ -84,14 +71,13 @@ public class Clicks implements ViewerListener {
         // pump() method before each use of the graph to copy back events
         // that have already occurred in the viewer thread inside
         // our thread.
-        
-        new Thread(() ->{
+        new Thread(() -> {
 //            System.out.println(Thread.currentThread().getName());
-            while(true){
+            while (true) {
                 fromViewer.pump();
             }
         }).start();
-    
+
 //        while (loop) {
 //            fromViewer.pump(); // or fromViewer.blockingPump(); in the nightly builds
 //
@@ -103,37 +89,45 @@ public class Clicks implements ViewerListener {
 //            // the nightly builds.
 //        }
     }
-    
+
     public void viewClosed(String id) {
         loop = false;
     }
-    
+
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
         int idd = Integer.parseInt(id);
-        Person persona = persons.getPerson(idd);
+        Hash h = ht.serchHashTable(idd);
+        Person persona = h.getData();
         PersonaSquare t = new PersonaSquare();
         t.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         t.setPer(persona);
-        
-        
     }
-    
+
     public void buttonReleased(String id) {
         Node nx = graph.getNode(id);
-        nx.removeAttribute("ui.class");
+        if (nx.hasAttribute("Thruth?")) {
+            nx.setAttribute("ui.class", "shown");
+        } else {
+            nx.removeAttribute("ui.class");
+        }
+
     }
-    
+
     @Override
     public void mouseOver(String id) {
-        
+
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "hover");
     }
-    
+
     public void mouseLeft(String id) {
         Node nx = graph.getNode(id);
-        nx.removeAttribute("ui.class");
+        if (nx.hasAttribute("Thruth?")) {
+            nx.setAttribute("ui.class", "shown");
+        } else {
+            nx.removeAttribute("ui.class");
+        }
     }
 }

@@ -42,7 +42,7 @@ public class HashTable {
     
     public Hash serchHashTable (int index){
         Hash hAux = this.first;
-        while (hAux.getNext() != null){
+        while (hAux != null){
             if (hAux.getKey()==index){
                 return hAux;
             }
@@ -51,5 +51,28 @@ public class HashTable {
             }
         }
         return null;
+    }
+    
+    public Hash serchHashTable2 (int index){
+        Hash hAux = this.first;
+        int count = 1;
+        while (hAux.getNext() != null){
+            if (count==index){
+                return hAux;
+            }
+            else{
+                hAux = hAux.getNext();
+            }
+            count += 1;
+        }
+        return null;
+    }
+
+    public int getLen() {
+        return len;
+    }
+
+    public Hash getLast() {
+        return last;
     }
 }

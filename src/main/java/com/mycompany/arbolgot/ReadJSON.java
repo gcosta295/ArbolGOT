@@ -23,6 +23,7 @@ import org.json.simple.parser.ParseException;
 public class ReadJSON {
 
     private String text;
+    private JSONObject arbolJSON;
 
     private boolean valid;
 
@@ -58,21 +59,14 @@ public class ReadJSON {
             file.showOpenDialog(file);
             File abre = file.getSelectedFile();
             String fileType = file.getTypeDescription(abre); //tells us what type of file the chosen one is 
-            if (fileType.equals("JSON Source File") || fileType.equals("Generic File")) { //Validates the JSON file
-                if (abre != null) {
-                    valid = true;
-                    FileReader archivos = new FileReader(abre);
-                    BufferedReader lee = new BufferedReader(archivos);
-                    while ((aux = lee.readLine()) != null) {
-                        setText(getText() + aux + "\n");
-                    }
-                    lee.close();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "\nEl archivo no es JSON, por favor volver a intentar",
-                        "ADVERTENCIA!!!", JOptionPane.ERROR_MESSAGE);
+            valid = true;
+            FileReader archivos = new FileReader(abre);
+            BufferedReader lee = new BufferedReader(archivos);
+            while ((aux = lee.readLine()) != null) {
+                setText(getText() + aux + "\n");
             }
+            lee.close();
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex + ""
                     + "\nNo se ha encontrado el archivo",
@@ -91,9 +85,15 @@ public class ReadJSON {
     public List Parse() {
         String jsonString = text;
         List persons = new List();
-        try {
             JSONParser parser = new JSONParser(); //creates a json parsser, to parse the json string
-            JSONObject arbolJSON = (JSONObject) parser.parse(jsonString);
+            try{
+                arbolJSON = (JSONObject) parser.parse(jsonString);
+            }
+            catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nSu archivo es invalido",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);}
+            System.out.println("asdfghj");
             String nombreArbol = (String) arbolJSON.keySet().iterator().next();
             JSONArray personas = (JSONArray) arbolJSON.get(nombreArbol);
             for (Object lineObject : personas) { //iterates through each person of the json
@@ -148,9 +148,6 @@ public class ReadJSON {
                     persons.getPerson(persons.getlen()).setIndex(persons.getlen());
                 }
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         return persons;
     }
 
