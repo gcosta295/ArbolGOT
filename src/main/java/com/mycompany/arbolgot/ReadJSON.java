@@ -93,7 +93,6 @@ public class ReadJSON {
             JOptionPane.showMessageDialog(null, ex + ""
                     + "\nSu archivo es invalido",
                     "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);}
-            System.out.println("asdfghj");
             String nombreArbol = (String) arbolJSON.keySet().iterator().next();
             JSONArray personas = (JSONArray) arbolJSON.get(nombreArbol);
             for (Object lineObject : personas) { //iterates through each person of the json

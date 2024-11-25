@@ -114,8 +114,6 @@ public class List {
                 if (sAux.getTitulo().equals(pTitle)) {
                     return true;
                 }
-//                    System.out.println("A   "+ sAux.getTitulo());
-
             }
 
             sAux = sAux.getNext();
@@ -232,8 +230,6 @@ public class List {
         while (pAux != null) {
             if (pAux.getName().contains(pName)) {
                 l.addPerson(pAux);
-                System.out.println(pAux.getName() + " " + pAux.getNumber());
-
             }
             pAux = pAux.getNext();
         }

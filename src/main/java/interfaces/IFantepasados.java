@@ -160,6 +160,7 @@ public class IFantepasados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
+        nombre = "";
         while (nombre == "") {
             nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
             if (persons.nameInList(nombre) == false) {
