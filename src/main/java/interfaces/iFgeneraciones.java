@@ -130,9 +130,11 @@ public class iFgeneraciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-
         nombre = JOptionPane.showInputDialog(this, "Escribe el numero de generacion");
+        System.out.println(1);
         num = Integer.parseInt(nombre);
+        System.out.println(num);
+        System.out.println(num - 1);
         jTextField1.setText(nombre);
     }//GEN-LAST:event_jB_buscarActionPerformed
 
