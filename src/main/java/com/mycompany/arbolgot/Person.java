@@ -20,9 +20,9 @@ public class Person {
     private String hairColor;
     private String mother;
     private String motin;
-    private String titulo;      //posible rename
-    private String esposo;      //posible rename
-    private List hijos;     //posible rename
+    private String titulo;
+    private String esposo;
+    private List hijos;
     private String notes;
     private String fate;
     private Person next;
@@ -85,7 +85,7 @@ public class Person {
     }
 
     /**
-     * asigna un valor a la siguiente persona
+     * asigna la siguiente persona
      *
      * @author astv06
      * @param next
@@ -94,10 +94,22 @@ public class Person {
         this.next = next;
     }
 
+    /**
+     * asigna la madre de la persona
+     *
+     * @author astv06
+     * @param pMother
+     */
     public void setPMother(Person pMother) {
         this.pMother = pMother;
     }
 
+    /**
+     * asigna el padre de la persona
+     *
+     * @author astv06
+     * @param pFather
+     */
     public void setPFather(Person pFather) {
         this.pFather = pFather;
     }
@@ -122,117 +134,193 @@ public class Person {
         return next;
     }
 
+    /**
+     * retorna el nombre de la madre de la persona
+     *
+     * @author astv06
+     * @return mother
+     */
     public String getMother() {
         return mother;
     }
 
     /**
-     * @param name the name to set
+     * asigna el nombre a una persona
+     * 
+     * @author astv06
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @param number the number to set
+     * 
+     * asigna el numero a la persona
+     * 
+     * @author astv06
+     * @param number
      */
     public void setNumber(String number) {
         this.number = number;
     }
 
     /**
-     * @param father the father to set
+     * asigna el nombre del padre de la persona
+     * 
+     * @author astv06
+     * @param father
      */
     public void setFather(String father) {
         this.father = father;
     }
 
     /**
-     * @param eyesColor the eyesColor to set
+     * asigna la informacion de los ojos de la persona
+     * 
+     * @author astv06
+     * @param eyesColor
      */
     public void setEyesColor(String eyesColor) {
         this.eyesColor = eyesColor;
     }
 
     /**
-     * @param hairColor the hairColor to set
+     * asigna la informacion del pelo de la persona
+     * 
+     * @author astv06
+     * @param hairColor 
      */
     public void setHairColor(String hairColor) {
         this.hairColor = hairColor;
     }
 
     /**
-     * @param mother the mother to set
+     * asigna el nombre de la madre de la persona
+     * 
+     * @author astv06
+     * @param mother
      */
     public void setMother(String mother) {
         this.mother = mother;
     }
 
     /**
-     * @param motin the motin to set
+     * asigna el nombre de la madre de la persona
+     * 
+     * @author astv06
+     * @param motin
      */
     public void setMotin(String motin) {
         this.motin = motin;
     }
 
     /**
-     * @param titulo the titulo to set
+     * asigna el titulo de la persona
+     * 
+     * @author astv06
+     * @param titulo
      */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
     /**
-     * @param esposo the esposo to set
+     * aisgna el esposo de la persona
+     * 
+     * @author astv06
+     * @param esposo
      */
     public void setEsposo(String esposo) {
         this.esposo = esposo;
     }
 
     /**
-     * @param hijos the hijos to set
+     * asigna la lista de hijos de la persona
+     * 
+     * @author astv06
+     * @param hijos
      */
     public void setHijos(List hijos) {
         this.hijos = hijos;
     }
 
     /**
-     * @param notes the notes to set
+     * asigna las notas de la persona
+     * 
+     * @author astv06
+     * @param notes
      */
     public void setNotes(String notes) {
         this.notes = notes;
     }
 
     /**
-     * @param fate the fate to set
+     * aisgna el dsetino de la persona
+     * 
+     * @author astv06
+     * @param fate
      */
     public void setFate(String fate) {
         this.fate = fate;
     }
 
     /**
-     * @param index the index to set
+     * asigna el index de la persona
+     * 
+     * @author astv06
+     * @param index
      */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     * Retorna el nombre del padre de la persona
+     * 
+     * @author astv06
+     * @return father
+     */
     public String getFather() {
         return father;
     }
 
+    /**
+     * Retorna numero de la persona
+     * 
+     * @author astv06
+     * @return number
+     */
     public String getNumber() {
         return number;
     }
 
+    /**
+     * asigna la lsita de nombres de hijos
+     * 
+     * @author astv06
+     * @param s
+     */
     public void setListaHijos(String s) {
         this.listHijos = s;
     }
 
+    /**
+     * Retorna la lista de hijos de la persona
+     * 
+     * @author astv06
+     * @return listHijos
+     */
     public String getListaHijos() {
         return listHijos;
     }
 
+    /**
+     * Retorna el padre de la persona
+     * 
+     * @author astv06
+     * @return pFather
+     */
     public Person getPFather() {
         return pFather;
     }
@@ -267,6 +355,12 @@ public class Person {
         return hijos;
     }
 
+    /**
+     * retorna el titulo de la persona
+     *
+     * @author astv06
+     * @return titulo
+     */
     public String getTitulo() {
         return titulo;
     }
@@ -363,7 +457,12 @@ public class Person {
         return l;
     }
     
-    
+    /**
+     * mustra toda la informacion de la persona
+     *
+     * @author gcosta
+     * @return hijos
+     */
     public String getAllInfo(Person p) {
         String x;
         String n;

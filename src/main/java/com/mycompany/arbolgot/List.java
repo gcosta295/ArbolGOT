@@ -79,6 +79,7 @@ public class List {
 
     /**
      * Se emplea para confirmar la existencia de una persona mediante su nombre
+     * en una lista
      *
      * @author gcosta
      * @param pName
@@ -102,10 +103,11 @@ public class List {
 
     /**
      * Se emplea para confirmar la existencia de una persona mediante su indice
+     * en una lista
      *
      * @author astv06
      * @param pIndex
-     * @return boolean
+     * @return b
      */
     public boolean indexInList(int pIndex) {
         boolean b = false;
