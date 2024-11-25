@@ -13,7 +13,7 @@ import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
 
 public class Clicks implements ViewerListener {
-//comment
+//commenta
     Graph graph;
     Viewer viewer;
     List persons;

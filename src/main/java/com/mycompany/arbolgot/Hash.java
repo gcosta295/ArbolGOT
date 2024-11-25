@@ -6,7 +6,7 @@ package com.mycompany.arbolgot;
 //comment2
 
 import org.graphstream.graph.Node;
-
+//
 /**
  *
  * @author astv06
