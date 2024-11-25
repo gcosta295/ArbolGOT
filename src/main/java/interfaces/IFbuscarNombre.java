@@ -224,7 +224,6 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
 
-        int y = 1;
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
         while (pAux != null) {
@@ -254,9 +253,10 @@ public class IFbuscarNombre extends javax.swing.JInternalFrame {
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
         Object h = jC_nombres.getSelectedItem();
-            String a = h.toString();
+           
+        if (h != null) {
+             String a = h.toString();
             nombre=a;
-        if (nombre != "") {
 
             Arbol arbol = new Arbol();
             arbol.Graph(persons);

@@ -27,6 +27,7 @@ public class PersonaSquare extends javax.swing.JFrame {
         this.person=p;
         this.NAME.setText(p.getName());
         this.jTextArea1.setText(p.getAllInfo(p));
+        this.jTextArea1.setEditable(false);
         this.setVisible(true);
         
     }

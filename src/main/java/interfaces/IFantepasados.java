@@ -309,33 +309,28 @@ public class IFantepasados extends javax.swing.JInternalFrame {
 
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
 
-        int y = 1;
-        jC_nombres.removeAllItems();
+            jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
         while (pAux != null) {
-            if (pAux.getNumber() != null) {
-                jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
-
-            } else {
-                jC_nombres.addItem(pAux.getName() + " " + pAux.getIndex());
-
+            if (pAux.getName().contains(nombre)) {
+                if (pAux.getNumber() != null) {
+                    jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
+                } else {
+                    jC_nombres.addItem(pAux.getName() + " " + pAux.getIndex());
+                }
             }
             pAux = pAux.getNext();
-
         }
-
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-        nombre = "";
-        while (nombre == "") {
-            nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
-            if (persons.nameInList(nombre) == false) {
-                nombre = "";
-                JOptionPane.showMessageDialog(null, "\nesta persona no se encuentra en el arbol",
-                        "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
-            }
+        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
+        if (persons.getNamedPerson(nombre) == null) {
+            nombre = "";
+            JOptionPane.showMessageDialog(null, "\nesta persona no se encuentra en el arbol",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
@@ -348,7 +343,10 @@ public class IFantepasados extends javax.swing.JInternalFrame {
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
         Object h = jC_nombres.getSelectedItem();
-        if (h != null) {
+        
+        if (h != null ) {
+            String a = h.toString();
+        nombre = a;
             Arbol arbol = new Arbol();
             arbol.Graph(persons);
             Clicks clicks = new Clicks();
@@ -359,7 +357,6 @@ public class IFantepasados extends javax.swing.JInternalFrame {
             clicks.setHt(ht);
             clicks.Clicks1();
 
-            String a = h.toString();
             String nums = a.replaceAll("[^0-9]", "");
 
             Hash x = ht.serchHashTable(Integer.parseInt(nums));
