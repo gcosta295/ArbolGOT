@@ -13,37 +13,54 @@ import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
 
 public class Clicks implements ViewerListener {
-//commenta
+
     Graph graph;
     Viewer viewer;
     List persons;
     HashTable ht;
     Boolean f;
     protected boolean loop = true;
-
-//    public static void main(String args[]) {
-//        System.setProperty("org.graphstream.ui", "swing");
-//        Graph graph = new SingleGraph("Clicks");
-//        for (int i = 0; i < 10; i++) {
-//            Node n = graph.addNode(String.valueOf(i));
-//            n.setAttribute("ui.style", "shape: box;");
-//            n.setAttribute("ui.style", "size: 50px,30px;");
-//            n.setAttribute("ui.style", "fill-color: blue;");
-//        }
-//        new Clicks(graph);
-//    }
+    
+    /**
+     * asigna un grafo.
+     *
+     * @author gcosta
+     *
+     * @param graph
+     */
     public void setGraph(Graph graph) {
         this.graph = graph;
     }
-    
+
+    /**
+     * asigna un viewer.
+     *
+     * @author gcosta
+     *
+     * @param viewer
+     */
     public void setViewer(Viewer viewer){
         this.viewer= viewer;
     }
-    
+   
+    /**
+     * asigna una lista de personas.
+     *
+     * @author gcosta
+     *
+     * @param persons
+     */    
     public void setPersons(List persons) {
         this.persons = persons;
     }
     
+    /**
+     * asigna una hashTable.
+     *
+     * @author gcosta
+     *
+     * @param ht
+     */    
     public void setHt (HashTable ht){
         this.ht=ht;
     }
@@ -55,47 +72,67 @@ public class Clicks implements ViewerListener {
         this.persons = null;
     }
     
+    /**
+     * devuelve el hashTable.
+     *
+     * @author gcosta
+     *
+     * @return ht
+     */    
     public HashTable getHT(){
         return ht;
     }
     
+    /**
+     * devuelve el grafo.
+     *
+     * @author gcosta
+     *
+     * @return graph
+     */     
     public Graph getGraph(){
         return graph;
     }
     
+    /**
+     * metodo que te permite que la interfaz
+     * detecte los clicks del usuario.
+     *
+     * @author gcosta
+     *
+     */     
     public void Clicks1() {
  
         viewer.enableAutoLayout();
-
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         viewer.getDefaultView().enableMouseOptions();
-   
         ViewerPipe fromViewer = viewer.newViewerPipe();
         fromViewer.addViewerListener(this);
         fromViewer.addSink(graph);
-
-        
         new Thread(() ->{
             while(true){
                 fromViewer.pump();
             }
         }).start();
-    
     }
     
     public void viewClosed(String id) {
         loop = false;
     }
     
+    /**
+     * da intrucciones de que hacer al
+     * darle click a un nodo.
+     *
+     * @author gcosta
+     *
+     * @param id
+     */     
+    @Override
     public void buttonPushed(String id) {
         Node nx = graph.getNode(id);
         nx.setAttribute("ui.class", "clicked");
-//        System.out.println(id);
         int idd = Integer.parseInt(id);
-//        System.out.println(idd);
-        
-        
-//        Person persona = persons.getPerson(idd);
         Hash h = ht.serchHashTable(idd);
         Person persona = h.getData();
         PersonaSquare t = new PersonaSquare();
@@ -103,6 +140,15 @@ public class Clicks implements ViewerListener {
         t.setPer(persona);
     }
     
+    /**
+     * da intrucciones de que hacer al
+     * soltar el click.
+     *
+     * @author gcosta
+     *
+     * @param id
+     */       
+    @Override
     public void buttonReleased(String id) {
         Node nx = graph.getNode(id);
         if (nx.hasAttribute("Thruth?")){
@@ -113,6 +159,14 @@ public class Clicks implements ViewerListener {
        
     }
     
+    /**
+     * detecta cuando el mouse esta
+     * sobre el nodo.
+     *
+     * @author gcosta
+     *
+     * @param id
+     */       
     @Override
     public void mouseOver(String id) {
         
@@ -120,6 +174,15 @@ public class Clicks implements ViewerListener {
         nx.setAttribute("ui.class", "hover");
     }
     
+    /**
+     * da intrucciones de que hacer al
+     * darle click a un nodo.
+     *
+     * @author gcosta
+     *
+     * @param id
+     */       
+    @Override
     public void mouseLeft(String id) {
              Node nx = graph.getNode(id);
         if (nx.hasAttribute("Thruth?")){

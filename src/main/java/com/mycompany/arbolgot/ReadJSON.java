@@ -76,7 +76,7 @@ public class ReadJSON {
 
     /**
      * Description permite la lectura del JSON, devuelve el parse completo de
-     * las lineas
+     * las personas
      *
      * @author gcosta
      * @see ReadJSON()
@@ -150,7 +150,14 @@ public class ReadJSON {
             }
         return persons;
     }
-
+/**
+     * conecta y genera padres y/o madres que falten por
+     * crear o conectar
+     *
+     * @author gcosta
+     * @param persons
+     * @return persons
+     */
     public List Arbol(List persons) {
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
@@ -199,6 +206,14 @@ public class ReadJSON {
         return persons;
     }
 
+    /**
+     * conecta y genera hijos que falten por
+     * crear o conectar
+     *
+     * @author gcosta
+     * @param persons
+     * @return persons
+     */
     public List arreglarHijos(List persons) {
 
         for (int j = 1; j <= persons.getlen(); j++) {

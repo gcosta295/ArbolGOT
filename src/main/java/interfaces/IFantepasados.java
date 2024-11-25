@@ -145,23 +145,29 @@ public class IFantepasados extends javax.swing.JInternalFrame {
     private void jB_cargarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombresActionPerformed
 
         int y = 1;
-        System.out.println(nombre);
         jC_nombres.removeAllItems();
         Person pAux = persons.getpFirst();
-        while (pAux != null) {
+                   while (pAux != null) {
             if (pAux.getName().contains(nombre)) {
 
                 jC_nombres.addItem(pAux.getName() + " " + pAux.getNumber() + " " + pAux.getIndex());
 
             }
             pAux = pAux.getNext();
+        
         }
+
     }//GEN-LAST:event_jB_cargarNombresActionPerformed
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-
-        nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona qu quieres buscar");
-
+        while (nombre == "") {
+            nombre = JOptionPane.showInputDialog(this, "Escribe el nombre de la persona que quieres buscar");
+            if (persons.nameInList(nombre) == false) {
+                nombre = "";
+                JOptionPane.showMessageDialog(null, "\nesta persona no se encuentra en el arbol",
+                        "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
@@ -173,42 +179,46 @@ public class IFantepasados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jB_cargarNombres2ActionPerformed
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
-        Arbol arbol = new Arbol();
-        arbol.Graph(persons);
-
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.setPersons(persons);
-        ht = arbol.getHashTable();
-        clicks.setHt(ht);
-        clicks.Clicks1();
-
         Object h = jC_nombres.getSelectedItem();
-        String a = h.toString();
-        String nums = a.replaceAll("[^0-9]", "");
-        System.out.println(nums);
+        if (h != null) {
+            Arbol arbol = new Arbol();
+            arbol.Graph(persons);
+            Clicks clicks = new Clicks();
+            clicks.setGraph(arbol.getGraph());
+            clicks.setViewer(arbol.getViewer());
+            clicks.setPersons(persons);
+            ht = arbol.getHashTable();
+            clicks.setHt(ht);
+            clicks.Clicks1();
 
-        Hash x = ht.serchHashTable(Integer.parseInt(nums));
-        Person persona = x.getData();
+            String a = h.toString();
+            String nums = a.replaceAll("[^0-9]", "");
 
-        Graph grafo = arbol.getGraph();
-        arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
+            Hash x = ht.serchHashTable(Integer.parseInt(nums));
+            Person persona = x.getData();
 
-        List asc = new List();
-        asc = persona.getAnsesters(asc, persona.getIndex());
+            Graph grafo = arbol.getGraph();
+            arbol.getGraph().getNode(Integer.toString(persona.getIndex())).setAttribute("ui.class", "shown");
 
-        for (int i = 1; i <= persons.getlen(); i++) {
-            Person aux = persons.getPerson(i);
+            List asc = new List();
+            asc = persona.getAnsesters(asc, persona.getIndex());
 
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
-        }
-        
-        for (int i = 1; i <= asc.getlen(); i++) {
-            Person aux = asc.getPerson(i);
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
+            for (int i = 1; i <= persons.getlen(); i++) {
+                Person aux = persons.getPerson(i);
+
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+            }
+
+            for (int i = 1; i <= asc.getlen(); i++) {
+                Person aux = asc.getPerson(i);
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "\nseleccione una persona para mostrar su arbol",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_verActionPerformed

@@ -47,10 +47,21 @@ public class Arbol {
         return graph;
     }
 
+    /**
+     * asigna un viewer
+     *
+     * @author Nathaly
+     */
     public void setViewer() {
         viewer = graph.display();
     }
 
+    /**
+     * asigna un viewer
+     *
+     * @author Nathaly
+     * @return viewer
+     */
     public Viewer getViewer() {
         return viewer;
     }
@@ -65,9 +76,7 @@ public class Arbol {
      */
     public void Graph(List persons) {
         Viewer viewer = graph.display();
-//      
         this.viewer = viewer;
-//        
         graph.setAttribute("ui.stylesheet", "node{\n"
                 + "    size: 15px, 15px;\n"
                 + "    fill-color: pink;\n"
@@ -89,7 +98,6 @@ public class Arbol {
                 + "fill-color: purple;\n"
                 + "size: 25px, 25px; \n"
                 + "}");
-//        graph.setAttribute("ui.stylesheet", "graph { fill-color: pink; }");
         this.HashTable = new HashTable();
         for (int i = 1; i <= persons.getlen(); i++) {
             Person pAux = persons.getPerson(i);
@@ -110,12 +118,9 @@ public class Arbol {
                     this.createHash(HashTable, pAux.getpMother(), pAux.getpMother().getIndex());
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
                     graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
-//                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
                 } else {
                     String y = Integer.toString(pAux.getIndex()) + Integer.toString(pAux.getpMother().getIndex());
                     graph.addEdge(y, Integer.toString(pAux.getpMother().getIndex()), Integer.toString(pAux.getIndex()), true).setAttribute("fill-color", "red");
-
-//                    graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(pAux.getpMother().getIndex()));
                 }
             }
             if (pAux.getHijos() != null) {
@@ -129,10 +134,6 @@ public class Arbol {
                         this.createHash(HashTable, hAux, hAux.getIndex());
                         String y = Integer.toString(pAux.getIndex()) + Integer.toString(hAux.getIndex());
                         graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()), true);
-//                        graph.addEdge(y, Integer.toString(pAux.getIndex()), Integer.toString(hAux.getIndex()));
-//                        Edge f = graph.getEdge(y);
-//                        System.out.println(f.getId());
-//                        f.setAttribute("shape", "arrow");
                     }
                 }
             }
@@ -140,10 +141,27 @@ public class Arbol {
 
     }
 
+        /**
+     * retorna la hashTable.
+     *
+     * @author astv06
+     *
+     * @return HashTable
+     */
     public HashTable getHashTable() {
         return HashTable;
     }
 
+       /**
+     * añade elementos a la hashtable.
+     *
+     * @author astv06
+     *
+     * @param ht
+     * @param o
+     * @param index
+     * @return HashTable
+     */
     public HashTable createHash(HashTable ht, Person o, int index) {
         Hash hAux = new Hash();
         hAux.setData(o);

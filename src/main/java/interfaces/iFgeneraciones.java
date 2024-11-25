@@ -130,44 +130,54 @@ public class iFgeneraciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
-
         nombre = JOptionPane.showInputDialog(this, "Escribe el numero de generacion");
-        num = Integer.parseInt(nombre);
-        jTextField1.setText(nombre);
+        try{
+           num = Integer.parseInt(nombre);
+           if (num<0){
+               nombre = "";
+               num = Integer.parseInt(nombre);
+           }
+           jTextField1.setText(nombre);
+        }
+        catch (Exception ex) {
+            nombre = "";
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nSeleccione un numero valido",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+        }
+
+        
     }//GEN-LAST:event_jB_buscarActionPerformed
 
     private void jB_cargarNombres1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cargarNombres1ActionPerformed
+        if (nombre != "") {
+            Arbol arbol = new Arbol();
+            arbol.Graph(persons);
 
-        Arbol arbol = new Arbol();
-        arbol.Graph(persons);
+            Clicks clicks = new Clicks();
+            clicks.setGraph(arbol.getGraph());
+            clicks.setViewer(arbol.getViewer());
+            clicks.setPersons(persons);
+            ht = arbol.getHashTable();
+            clicks.setHt(ht);
+            clicks.Clicks1();
 
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.setPersons(persons);
-        ht = arbol.getHashTable();
-        clicks.setHt(ht);
-        clicks.Clicks1();
+            List descendants = new List();
+            descendants = persons.getpFirst().getGeneration(num, descendants);
 
-        
+            for (int i = 1; i <= persons.getlen(); i++) {
+                Person aux = persons.getPerson(i);
 
-       
-        List descendants = new List();
-        descendants = persons.getpFirst().getGeneration(num, descendants);
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+            }
+            for (int i = 1; i <= descendants.getlen(); i++) {
 
-        for (int i = 1; i <= persons.getlen(); i++) {
-            Person aux = persons.getPerson(i);
-            
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("ui.class");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).removeAttribute("Thruth?");
+                Person aux = descendants.getPerson(i);
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
+                arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
+            }
         }
-        for (int i = 1; i <= descendants.getlen(); i++) {
-            
-            Person aux = descendants.getPerson(i);
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("ui.class", "shown");
-            arbol.getGraph().getNode(Integer.toString(aux.getIndex())).setAttribute("Thruth?");
-        }
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_cargarNombres1ActionPerformed
 

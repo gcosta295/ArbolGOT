@@ -217,18 +217,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_B_cambiarJSONActionPerformed
 
     private void B_arbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_arbolActionPerformed
-
+        if (persons != null) {
 //        IFmostrarArbol interArbol = new IFmostrarArbol();
 //        jDesktopPane_menu.add(interArbol);
 //        interArbol.setVisible(true);
-        System.setProperty("org.graphstream.ui", "swing");
-        Arbol arbol = new Arbol();
-        arbol.Graph(persons);
+            System.setProperty("org.graphstream.ui", "swing");
+            Arbol arbol = new Arbol();
+            arbol.Graph(persons);
 
-        Clicks clicks = new Clicks();
-        clicks.setGraph(arbol.getGraph());
-        clicks.setViewer(arbol.getViewer());
-        clicks.setPersons(persons);
+            Clicks clicks = new Clicks();
+            clicks.setGraph(arbol.getGraph());
+            clicks.setViewer(arbol.getViewer());
+            clicks.setPersons(persons);
 //        for (int i = 1; i <= persons.getlen(); i++) {
 //            System.out.println(persons.getPerson(i).getName());
 //        }
@@ -239,38 +239,42 @@ public class Menu extends javax.swing.JFrame {
 //        for (int i = 1; i < ht.getLen(); i++) {
 //            System.out.println(ht.serchHashTable2(i).getData().getName());
 //        }
-        clicks.setHt(arbol.getHashTable());
+            clicks.setHt(arbol.getHashTable());
 //        arbol.getGraph().getNode("10").setAttribute("ui.class", "hover");
-        clicks.Clicks1();
 
+            clicks.Clicks1();
 
+        }
     }//GEN-LAST:event_B_arbolActionPerformed
 
     private void B_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_nombreActionPerformed
 
-        IFbuscarNombre interNombre = new IFbuscarNombre(persons);
-        for (int i = 1; i <= persons.getlen(); i++) {
-            System.out.println(persons.getPerson(i).getName());
+        if (persons != null) {
+            IFbuscarNombre interNombre = new IFbuscarNombre(persons);
+            jDesktopPane_menu.add(interNombre);
+            interNombre.setVisible(true);
         }
-        jDesktopPane_menu.add(interNombre);
-        interNombre.setVisible(true);
 
 
     }//GEN-LAST:event_B_nombreActionPerformed
 
     private void B_antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_antepasadosActionPerformed
 
-        IFantepasados interAntepasados = new IFantepasados(persons);
-        jDesktopPane_menu.add(interAntepasados);
-        interAntepasados.setVisible(true);
+        if (persons != null) {
+            IFantepasados interAntepasados = new IFantepasados(persons);
+            jDesktopPane_menu.add(interAntepasados);
+            interAntepasados.setVisible(true);
+        }
 
     }//GEN-LAST:event_B_antepasadosActionPerformed
 
     private void B_generacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_generacionActionPerformed
 
-        iFgeneraciones interGeneracion = new iFgeneraciones(persons);
-        jDesktopPane_menu.add(interGeneracion);
-        interGeneracion.setVisible(true);
+        if (persons != null) {
+            iFgeneraciones interGeneracion = new iFgeneraciones(persons);
+            jDesktopPane_menu.add(interGeneracion);
+            interGeneracion.setVisible(true);
+        }
 
     }//GEN-LAST:event_B_generacionActionPerformed
 
